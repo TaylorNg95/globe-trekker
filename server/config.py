@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy.schema import MetaData
 from flask_bcrypt import Bcrypt
+from flask_restful import Api
 
 naming_convention = {
     "ix": 'ix_%(column_0_label)s',
@@ -19,6 +20,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db' # TBD: link to .env f
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app=app, metadata=metaData)
+
+api = Api(app)
+
 migrate = Migrate(app=app, db=db, render_as_batch=True) # TBD: added this in
 
 bcrypt = Bcrypt(app)
