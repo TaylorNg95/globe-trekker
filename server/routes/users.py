@@ -7,7 +7,11 @@ from models.user import User
 def check_before_request():
     if request.endpoint == 'user':
         id = request.view_args.get('id')
-        print(id)
+        user = User.query.filter(User.id == id).first()
+        if user:
+            g.user = user
+        else:
+            return {'error': 'invalid request'}, 404
 
 class UsersResource(Resource):
     def get(self):
