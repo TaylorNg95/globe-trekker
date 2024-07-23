@@ -16,6 +16,8 @@ class User(db.Model, SerializerMixin):
     entries = db.relationship('Entry', back_populates='user', cascade='all, delete-orphan')
     trips = association_proxy('Entry', 'trip', creator=lambda trip_obj: Entry(trip=trip_obj))
 
+    serialize_rules = ('-entries.user',)
+
     def __repr__(self):
         return f'<User id={self.id}, name={self.name}, username={self.username}>'
 

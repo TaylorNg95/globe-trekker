@@ -15,6 +15,8 @@ class Entry(db.Model, SerializerMixin):
     user = db.relationship('User', back_populates='entries')
     trip = db.relationship('Trip', back_populates='entries')
 
+    serialize_rules = ('-user.entries', '-trip.entries',)
+
     def __repr__(self):
         return f'<Entry date={self.date}, miles={self.miles}, user_id={self.user_id}, trip_id={self.trip_id}>'
 
