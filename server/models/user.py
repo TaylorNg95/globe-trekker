@@ -14,7 +14,7 @@ class User(db.Model, SerializerMixin):
     _password_hash = db.Column(db.String, nullable=False)
 
     entries = db.relationship('Entry', back_populates='user', cascade='all, delete-orphan')
-    trips = association_proxy('Entry', 'trip', creator=lambda trip_obj: Entry(trip=trip_obj))
+    trips = association_proxy('entries', 'trip', creator=lambda trip_obj: Entry(trip=trip_obj))
 
     serialize_rules = ('-entries.user',)
 

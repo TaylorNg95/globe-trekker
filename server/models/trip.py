@@ -13,7 +13,7 @@ class Trip(db.Model, SerializerMixin):
     total_miles = db.Column(db.Integer, nullable=False)
 
     entries = db.relationship('Entry', back_populates='trip', cascade='all, delete-orphan')
-    users = association_proxy('Entry', 'user', creator=lambda user_obj: Entry(user=user_obj))
+    users = association_proxy('entries', 'user', creator=lambda user_obj: Entry(user=user_obj))
 
     serialize_rules = ('-entries.trip',)
 
