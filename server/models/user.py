@@ -15,7 +15,7 @@ class User(db.Model, SerializerMixin):
         return f'<User id={self.id}, name={self.name}, username={self.username}>'
 
     @validates('name', 'username')
-    def validate_name(self, key, input):
+    def validate_inputs(self, key, input):
         if input == '':
             raise ValueError(f'{key} required')
         else:

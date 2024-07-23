@@ -11,11 +11,18 @@ class Trip(db.Model, SerializerMixin):
     total_miles = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
-        return f'<User id={self.id}, name={self.name}, username={self.username}>'
+        return f'<Trip id={self.id}, name={self.name}, country={self.country}, miles={self.total_miles}>'
 
-    @validates('name')
-    def validate_name(self, key, name):
-        if name == '':
-            raise ValueError('Name required')
+    @validates('name', 'country')
+    def validate_inputs(self, key, input):
+        if input == '':
+            raise ValueError(f'{key} required')
         else:
-            return name
+            return input
+        
+    @validates('total_miles')
+    def validate_total_miles(self, key, total_miles):
+        if total_miles <= 0:
+            raise ValueError('Total miles must be greater than 0')
+        else:
+            return total_miles
