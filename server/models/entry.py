@@ -8,7 +8,7 @@ class Entry(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String, nullable=False)
-    miles = db.Column(db.Integer, nullable=False)
+    miles = db.Column(db.Float, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     trip_id = db.Column(db.Integer, db.ForeignKey('trips.id'), nullable=False)
 
