@@ -2,6 +2,8 @@ from config import db, bcrypt
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.ext.associationproxy import association_proxy
+from models.entry import Entry
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
@@ -10,6 +12,9 @@ class User(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable=False)
     username = db.Column(db.String, nullable=False, unique=True)
     _password_hash = db.Column(db.String, nullable=False)
+
+    entries = db.relationship('Entry', back_populates='user', cascade='all, delete-orphan')
+    trips = association_proxy('Entry', 'trip', creator=lambda trip_obj: Entry(trip=trip_obj))
 
     def __repr__(self):
         return f'<User id={self.id}, name={self.name}, username={self.username}>'

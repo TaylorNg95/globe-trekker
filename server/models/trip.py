@@ -1,6 +1,8 @@
 from config import db
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
+from sqlalchemy.ext.associationproxy import association_proxy
+from models.entry import Entry
 
 class Trip(db.Model, SerializerMixin):
     __tablename__ = 'trips'
@@ -9,6 +11,9 @@ class Trip(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable=False)
     country = db.Column(db.String, nullable=False)
     total_miles = db.Column(db.Integer, nullable=False)
+
+    entries = db.relationship('Entry', back_populates='trip', cascade='all, delete-orphan')
+    users = association_proxy('Entry', 'user', creator=lambda user_obj: Entry(user=user_obj))
 
     def __repr__(self):
         return f'<Trip id={self.id}, name={self.name}, country={self.country}, miles={self.total_miles}>'

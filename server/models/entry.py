@@ -12,6 +12,9 @@ class Entry(db.Model, SerializerMixin):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     trip_id = db.Column(db.Integer, db.ForeignKey('trips.id'), nullable=False)
 
+    user = db.relationship('User', back_populates='entries')
+    trip = db.relationship('Trip', back_populates='entries')
+
     def __repr__(self):
         return f'<Entry date={self.date}, miles={self.miles}, user_id={self.user_id}, trip_id={self.trip_id}>'
 
