@@ -41,7 +41,7 @@ class UserEntryResource(Resource):
              db.session.commit()
              return entry.to_dict(rules=['-trip', '-user']), 200
          except:
-             {'error': 'Invalid input'}, 422
+             return {'error': 'Invalid input'}, 422
 
     def delete(self, user_id, trip_id, entry_id):
         entry = Entry.query.filter(Entry.id == entry_id).first()
