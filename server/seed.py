@@ -32,5 +32,5 @@ with app.app_context():
     entry4 = Entry(date='07-22-24', miles=5.2, user_id=4, trip_id=4)
     entry5 = Entry(date='07-23-24', miles=3.2, user_id=4, trip_id=4)
     entry6 = Entry(date='07-24-24', miles=6.7, user_id=4, trip_id=4)
-    db.session.add_all([entry1, entry2, entry3, entry4])
+    db.session.add_all([entry1, entry2, entry3, entry4, entry5, entry6])
     db.session.commit()

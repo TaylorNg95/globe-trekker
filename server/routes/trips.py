@@ -20,8 +20,8 @@ class UserTripResource(Resource):
      def get(self, user_id, trip_id):
         trips = User.query.filter(User.id == user_id).first().trips
         trip = [trip for trip in trips if trip.id == trip_id][0]
-        return trip.to_dict(rules=['-entries',]), 200
+        return trip.to_dict(), 200
 
-api.add_resource(AllTripsResource, '/api/trips', endpoint='trips')
-api.add_resource(UserTripsResource, '/api/users/<int:user_id>/trips', endpoint='user_trips')
-api.add_resource(UserTripResource, '/api/users/<int:user_id>/trips/<int:trip_id>', endpoint='user_trip')
+api.add_resource(AllTripsResource, '/api/trips')
+api.add_resource(UserTripsResource, '/api/users/<int:user_id>/trips')
+api.add_resource(UserTripResource, '/api/users/<int:user_id>/trips/<int:trip_id>')
