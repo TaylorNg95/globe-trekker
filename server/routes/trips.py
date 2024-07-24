@@ -11,7 +11,10 @@ class AllTripsResource(Resource):
 
 class UserTripsResource(Resource):
     def get(self, user_id):
-        trips = User.query.filter(User.id == user_id).first().trips
+        trips = {}
+        for trip in User.query.filter(User.id == user_id).first().trips: # Avoids duplicate trips if multiple entries
+            if not trips.get(trip):
+                trips[trip] = True
         return [trip.to_dict(rules=['-entries',]) for trip in trips], 200
         
     # STRETCH GOAL: ADD CUSTOM TRIP
@@ -20,7 +23,7 @@ class UserTripResource(Resource):
      def get(self, user_id, trip_id):
         trips = User.query.filter(User.id == user_id).first().trips
         trip = [trip for trip in trips if trip.id == trip_id][0]
-        return trip.to_dict(), 200
+        return trip.to_dict(rules=['-entries',]), 200
 
 api.add_resource(AllTripsResource, '/api/trips')
 api.add_resource(UserTripsResource, '/api/users/<int:user_id>/trips')
