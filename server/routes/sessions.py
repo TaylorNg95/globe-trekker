@@ -24,6 +24,20 @@ class Signup(Resource):
 
 api.add_resource(Signup, '/api/signup')
 
+class Login(Resource):
+    def post(self):
+        data = request.get_json()
+        username = data.get('username')
+        password = data.get('password')
+        user = User.query.filter(User.username == username).first()
+        if user and user.authenticate(password):
+            session['user_id'] = user.id
+            return user.to_dict(), 200
+        else:
+            return {'error': 'invalid credentials'}, 401
+
+api.add_resource(Login, '/api/login')
+
 class CheckSession(Resource):
     def get(self):
         user_id = session.get('user_id')
