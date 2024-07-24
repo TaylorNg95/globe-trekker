@@ -16,7 +16,7 @@ class UsersResource(Resource):
 class UserResource(Resource):
     def get(self, id):
         user = g.user # id not used because user will always come from global g
-        return user.to_dict(rules=['-_password_hash', '-entries', 'trips', '-trips.entries',]), 200
+        return user.to_dict(rules=['-_password_hash', '-entries', '-trips', '-trips.entries',]), 200
 
 api.add_resource(UsersResource, '/api/users', endpoint='users')
 api.add_resource(UserResource, '/api/users/<int:id>', endpoint='user')
