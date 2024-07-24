@@ -22,7 +22,7 @@ api.add_resource(UsersResource, '/api/users', endpoint='users')
 
 class UserResource(Resource):
     def get(self, id):
-        user = User.query.filter(User.id == id).first()
+        user = g.user
         return user.to_dict(rules=['-_password_hash', '-entries', 'trips', '-trips.entries',]), 200
 
 api.add_resource(UserResource, '/api/users/<int:id>', endpoint='user')
