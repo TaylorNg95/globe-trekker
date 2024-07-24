@@ -17,9 +17,9 @@ class Signup(Resource):
             db.session.commit()
             session['user_id'] = user.id
             return user.to_dict(), 201
-        except ValueError as e:
+        except ValueError:
             return {'error': 'Name, username and password required'}, 422
-        except IntegrityError as e:
+        except IntegrityError:
             return {'error': 'Username must be unique'}, 422
 
 class Login(Resource):
