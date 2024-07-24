@@ -27,8 +27,10 @@ with app.app_context():
     db.session.commit()
 
     entry1 = Entry(date='07-02-24', miles=4.5, user_id=1, trip_id=2)
-    entry2 = Entry(date='07-05-24', miles=2.6, user_id=2, trip_id=3)
-    entry3 = Entry(date='07-12-24', miles=7.3, user_id=3, trip_id=2)
+    entry2 = Entry(date='07-05-24', miles=2.6, user_id=2, trip_id=2)
+    entry3 = Entry(date='07-12-24', miles=7.3, user_id=2, trip_id=3)
     entry4 = Entry(date='07-22-24', miles=5.2, user_id=4, trip_id=4)
+    entry5 = Entry(date='07-23-24', miles=3.2, user_id=4, trip_id=4)
+    entry6 = Entry(date='07-24-24', miles=6.7, user_id=4, trip_id=4)
     db.session.add_all([entry1, entry2, entry3, entry4])
     db.session.commit()

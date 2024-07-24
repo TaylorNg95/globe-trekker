@@ -1,5 +1,5 @@
-from flask import request, session # do we need g
-from config import app, db, api
+from flask import request, session
+from config import db, api
 from flask_restful import Resource
 from models.user import User
 from sqlalchemy.exc import IntegrityError

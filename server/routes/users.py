@@ -3,15 +3,7 @@ from config import app, db, api
 from flask_restful import Resource
 from models.user import User
 
-@app.before_request
-def check_before_request():
-    if request.endpoint == 'user':
-        id = request.view_args.get('id')
-        user = User.query.filter(User.id == id).first()
-        if user:
-            g.user = user
-        else:
-            return {'error': 'invalid request'}, 404
+# adjust this to account for admin privileges
 
 class UsersResource(Resource):
     def get(self):
