@@ -4,6 +4,11 @@ from flask_migrate import Migrate
 from sqlalchemy.schema import MetaData
 from flask_bcrypt import Bcrypt
 from flask_restful import Api
+from dotenv import load_dotenv # load environment variables
+
+import os # access environment variables
+
+load_dotenv()
 
 naming_convention = {
     "ix": 'ix_%(column_0_label)s',
@@ -18,6 +23,7 @@ metaData = MetaData(naming_convention=naming_convention)
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db' # TBD: link to .env file
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = os.getenv('FLASK_SECRET_KEY')
 
 db = SQLAlchemy(app=app, metadata=metaData)
 

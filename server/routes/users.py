@@ -18,11 +18,10 @@ class UsersResource(Resource):
         users = User.query.all()
         return [user.to_dict(rules=['-_password_hash', '-entries']) for user in users], 200
 
-api.add_resource(UsersResource, '/api/users', endpoint='users')
-
 class UserResource(Resource):
     def get(self, id):
         user = g.user
         return user.to_dict(rules=['-_password_hash', '-entries', 'trips', '-trips.entries',]), 200
 
+api.add_resource(UsersResource, '/api/users', endpoint='users')
 api.add_resource(UserResource, '/api/users/<int:id>', endpoint='user')
