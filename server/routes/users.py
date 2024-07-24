@@ -8,16 +8,15 @@ def check_before_request():
     user_id = session.get('user_id')
     g.user = User.query.filter(User.id == user_id).first() # set global user
 
-# DEVELOPMENT PURPOSES ONLY
 class UsersResource(Resource):
     def get(self):
         users = User.query.all()
         return [user.to_dict(rules=['-_password_hash', '-entries']) for user in users], 200
 
 class UserResource(Resource):
-    def get(self, user_id):
-        user = g.user
+    def get(self, id):
+        user = g.user # id not used because user will always come from global g
         return user.to_dict(rules=['-_password_hash', '-entries', 'trips', '-trips.entries',]), 200
 
-# api.add_resource(UsersResource, '/api/users', endpoint='users')
-api.add_resource(UserResource, '/api/users/<int:user_id>', endpoint='user')
+api.add_resource(UsersResource, '/api/users', endpoint='users')
+api.add_resource(UserResource, '/api/users/<int:id>', endpoint='user')
