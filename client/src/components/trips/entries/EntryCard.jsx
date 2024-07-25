@@ -1,8 +1,8 @@
 import React from 'react'
 
-function EntryCard() {
+function EntryCard({entry}) {
   return (
-    <div>EntryCard</div>
+    <p>{entry.date} || {entry.miles} mile{entry.miles == 1.0 ? '' : 's'}</p>
   )
 }
 

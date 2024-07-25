@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { TripContext } from '../../context/TripContext'
 import { UserContext } from '../../context/UserContext'
-import EntryList from './entries/EntryList'
+import EntryCard from './entries/EntryCard'
 
 function UserTripPage() {
   const {trips} = useContext(TripContext)
@@ -15,7 +15,9 @@ function UserTripPage() {
     <>
       <h1>{trip.name}</h1>
       <h2>{trip.total_miles}</h2>
-      <EntryList entries={entries}/>
+      <div>
+        {entries.map(entry => <EntryCard key={entry.id} entry={entry}/>)}
+      </div>
     </>
   )
 }
