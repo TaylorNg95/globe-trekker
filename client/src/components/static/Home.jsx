@@ -1,7 +1,15 @@
-import React from 'react'
+import {useContext} from 'react'
+import { UserContext } from '../../context/UserContext'
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
-    return (
+
+    const {loggedIn} = useContext(UserContext)
+    const navigate = useNavigate()
+
+    if (!loggedIn) {
+        navigate('/login')
+    } else return (
         <h1>Home: Walking the World</h1>
     )
 }

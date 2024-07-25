@@ -13,8 +13,11 @@ function NavBar() {
         fetch('/api/logout', {
             method: 'DELETE'
         })
-        logout()
-        navigate('/login') // this is not working navigate('/')
+        .then(response => {
+            logout()
+            navigate('/login')
+        })
+         // this is not working navigate('/')
     }
 
     const routes = loggedIn ? <>
