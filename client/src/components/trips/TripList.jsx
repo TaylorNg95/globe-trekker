@@ -6,7 +6,10 @@ function TripList({trips}) {
   const tripCards = trips_list.map(trip => <TripCard key={trip.id} trip={trip}/>) 
 
   return (
-    <div>TripList</div>
+    <>
+      <p>TripList</p>
+      {tripCards}
+    </>
   )
 }
 
