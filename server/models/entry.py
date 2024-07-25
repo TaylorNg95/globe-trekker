@@ -29,7 +29,7 @@ class Entry(db.Model, SerializerMixin):
         
     @validates('miles')
     def validate_miles(self, key, miles):
-        if miles <= 0:
+        if float(miles) <= 0:
             raise ValueError('Miles must be greater than 0')
         else:
             return miles
