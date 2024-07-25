@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from sqlalchemy.schema import MetaData
 from flask_bcrypt import Bcrypt
 from flask_restful import Api
+from flask_cors import CORS
 from dotenv import load_dotenv # load environment variables
 
 import os # access environment variables
@@ -32,3 +33,5 @@ api = Api(app)
 migrate = Migrate(app=app, db=db, render_as_batch=True) # TBD: added this in
 
 bcrypt = Bcrypt(app)
+
+CORS(app)

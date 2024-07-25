@@ -5,20 +5,23 @@ import Signup from './components/sessions/Signup'
 import UserTripList from './components/trips/TripList'
 import TripMenu from './components/trips/TripMenuPage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { UserProvider } from './context/UserContext'
 
 function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/login' element={<Login />}/>
-        <Route path='/signup' element={<Signup />}/>
-        <Route path='/my-trips' element={<UserTripList />}/>
-        <Route path='/my-trips/:id' element={<UserTripList />}/>
-        <Route path='/trip-menu' element={<TripMenu />}/>
-      </Routes>
+      <UserProvider>
+        <NavBar />
+        <Routes>
+          <Route path='/' element={<Home />}/>
+          <Route path='/login' element={<Login />}/>
+          <Route path='/signup' element={<Signup />}/>
+          <Route path='/my-trips' element={<UserTripList />}/>
+          <Route path='/my-trips/:id' element={<UserTripList />}/>
+          <Route path='/trip-menu' element={<TripMenu />}/>
+        </Routes>
+      </UserProvider>
     </BrowserRouter>
 
   )
