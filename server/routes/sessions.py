@@ -30,7 +30,7 @@ class Login(Resource):
         user = User.query.filter(User.username == username).first()
         if user and user.authenticate(password):
             session['user_id'] = user.id
-            return user.to_dict(), 200
+            return user.to_dict(rules=['trips',]), 200
         else:
             return {'error': 'Invalid credentials'}, 422
 
