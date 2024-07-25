@@ -1,8 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function TripCard({trip}) {
+// /my-trips/:id
+  const navigate = useNavigate()
+
   function handleClick(){
-    console.log(trip.id)
+    navigate(`/my-trips/${trip.id}`)
   }
 
   return (
