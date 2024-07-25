@@ -34,6 +34,7 @@ function NavBar() {
             <ul>
                 {routes}    
             </ul>
+            <p>{loggedIn ? 'Welcome!' : ''}</p>
         </>
     )
 }

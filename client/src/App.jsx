@@ -2,28 +2,31 @@ import NavBar from './components/navigation/NavBar'
 import Home from './components/static/Home'
 import Login from './components/sessions/Login'
 import Signup from './components/sessions/Signup'
-import UserTripList from './components/trips/TripList'
-import TripMenu from './components/trips/TripMenuPage'
+import TripMenuPage from './components/trips/TripMenuPage'
+import UserTripsPage from './components/trips/UserTripsPage'
+import UserTripPage from './components/trips/UserTripPage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { UserProvider } from './context/UserContext'
+import { TripProvider } from './context/TripContext'
 
 function App() {
 
   return (
     <BrowserRouter>
       <UserProvider>
+      <TripProvider>
         <NavBar />
         <Routes>
           <Route path='/' element={<Home />}/>
           <Route path='/login' element={<Login />}/>
           <Route path='/signup' element={<Signup />}/>
-          <Route path='/my-trips' element={<UserTripList />}/>
-          <Route path='/my-trips/:id' element={<UserTripList />}/>
-          <Route path='/trip-menu' element={<TripMenu />}/>
+          <Route path='/my-trips' element={<UserTripsPage />}/>
+          <Route path='/my-trips/:id' element={<UserTripPage />}/>
+          <Route path='/trip-menu' element={<TripMenuPage />}/>
         </Routes>
+        </TripProvider>
       </UserProvider>
     </BrowserRouter>
-
   )
 }
 

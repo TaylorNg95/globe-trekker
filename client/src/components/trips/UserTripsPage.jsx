@@ -1,9 +1,9 @@
 import React from 'react'
 
-function UserTripPage() {
+function UserTripsPage() {
   return (
     <div>UserTripsPage</div>
   )
 }
 
-export default UserTripPage
+export default UserTripsPage
