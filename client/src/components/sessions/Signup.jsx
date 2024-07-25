@@ -1,6 +1,9 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
+import { UserContext } from '../../context/UserContext'
 
 function Signup() {
+
+  const {login} = useContext(UserContext)
 
   const initialFormData = {
     name: '',
@@ -27,6 +30,10 @@ function Signup() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(user => {
+        login(user)
     })
     setFormData(initialFormData)
   }

@@ -7,12 +7,12 @@ function UserProvider({children}) {
     const [user, setUser] = useState(false)
 
     function login(user){
-        setLoggedIn = true
+        setLoggedIn(true)
         setUser(user)
     }
 
     function logout(){
-        setLoggedIn = false
+        setLoggedIn(false)
         setUser(null)
     }
 
