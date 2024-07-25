@@ -30,11 +30,9 @@ function NavBar() {
 
     return (
         <>
-            <h1>In Nav Bar</h1>
             <ul>
                 {routes}    
             </ul>
-            <p>{loggedIn ? 'Welcome!' : ''}</p>
         </>
     )
 }
