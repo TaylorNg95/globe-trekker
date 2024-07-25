@@ -1,9 +1,11 @@
 import {useState, useContext} from 'react'
 import { UserContext } from '../../context/UserContext'
+import { useNavigate } from 'react-router-dom'
 
 function Signup() {
 
   const {login} = useContext(UserContext)
+  const navigate = useNavigate()
 
   const initialFormData = {
     name: '',
@@ -31,9 +33,18 @@ function Signup() {
         },
         body: JSON.stringify(formData)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (response.status == 201) {
+            return response.json()
+        } else if (response.status == 422) {
+            return response.json().then(error => {
+                return Promise.reject(error)
+            })
+        }
+    })
     .then(user => {
         login(user)
+        navigate('/')
     })
     setFormData(initialFormData)
   }
