@@ -1,6 +1,6 @@
 import {useContext} from 'react'
 import { TripContext } from '../../context/TripContext'
-import TripInfo from './TripInfo'
+import TripMenuCard from './TripMenuCard'
 
 function TripMenuPage() {
   const {trips} = useContext(TripContext)
@@ -9,7 +9,7 @@ function TripMenuPage() {
     <>
       <h2>TripMenuPage</h2>
       <div>
-        {trips.map(trip => <TripInfo key={trip.id} trip={trip}/>)}
+        {trips.map(trip => <TripMenuCard key={trip.id} trip={trip}/>)}
       </div>
     </>
   )
