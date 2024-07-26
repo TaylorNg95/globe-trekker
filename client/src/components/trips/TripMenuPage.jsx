@@ -1,12 +1,17 @@
 import {useContext} from 'react'
 import { TripContext } from '../../context/TripContext'
-import TripCard from './TripCard'
+import TripInfo from './TripInfo'
 
 function TripMenuPage() {
   const {trips} = useContext(TripContext)
 
   return (
-    <div>TripMenuPage</div>
+    <>
+      <h2>TripMenuPage</h2>
+      <div>
+        {trips.map(trip => <TripInfo key={trip.id} trip={trip}/>)}
+      </div>
+    </>
   )
 }
 

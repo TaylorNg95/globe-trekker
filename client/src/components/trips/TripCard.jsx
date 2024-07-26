@@ -2,6 +2,7 @@ import {useContext} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import ProgressBar from './ProgressBar'
+import TripInfo from './TripInfo'
 
 function TripCard({trip}) {
 
@@ -19,9 +20,7 @@ function TripCard({trip}) {
 
   return (
     <div onClick={handleClick}>
-      <h2>TripCard</h2>
-      <p>{trip.name}</p>
-      <p>Total Miles: {trip.total_miles}</p>
+      <TripInfo trip={trip}/>
       <ProgressBar progress={milesAchieved} total={trip.total_miles}/>
     </div>
   )
