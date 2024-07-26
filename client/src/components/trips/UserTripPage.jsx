@@ -1,18 +1,20 @@
 import { useContext, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { TripContext } from '../../context/TripContext'
 import { UserContext } from '../../context/UserContext'
+import { TripContext } from '../../context/TripContext'
+import { EntryContext } from '../../context/EntryContext'
 import EntryCard from './entries/EntryCard'
 import NewEntryForm from './entries/NewEntryForm'
 
 function UserTripPage() {
-  const {trips} = useContext(TripContext)
   const {user} = useContext(UserContext)
+  const {trips} = useContext(TripContext)
+  const {entries, setEntries} = useContext(EntryContext)
   const {id} = useParams()
   const trip = trips.find(trip => trip.id == id)
 
   const starting_entries = user.entries.filter(entry => entry.trip_id == id)
-  const [entries, setEntries] = useState(starting_entries)
+  setEntries(starting_entries)
 
   return (
     <>

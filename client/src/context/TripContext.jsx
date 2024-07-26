@@ -5,13 +5,14 @@ const TripContext = createContext({})
 function TripProvider({children}) {
     const [trips, setTrips] = useState([])
     const [loading, setLoading] = useState(true)
-
+    console.log('trips provider')
     useEffect(() => {
         fetch('/api/trips')
         .then(response => response.json())
         .then(trips => {
             setTrips(trips)
             setLoading(false)
+            console.log('trip use effect')
         })
     }, [])
 

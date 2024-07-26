@@ -5,10 +5,12 @@ const UserContext = createContext({})
 function UserProvider({children}) {
     const [loggedIn, setLoggedIn] = useState(null)
     const [user, setUser] = useState(false)
+    console.log('user provider')
 
     useEffect(() => {
         fetch('/api/check_session')
         .then(response => {
+            console.log('user use effect')
             if (response.status == 200) {
                 return response.json()
             } else if (response.status == 401) {
