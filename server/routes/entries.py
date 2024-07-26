@@ -20,7 +20,7 @@ class EntriesResource(Resource):
             db.session.add(entry)
             db.session.commit()
             return entry.to_dict(rules=['-user', '-trip']), 201
-        except IntegrityError:
+        except:
             return {'error': 'Invalid input'}, 422
     
 class EntryResource(Resource):
