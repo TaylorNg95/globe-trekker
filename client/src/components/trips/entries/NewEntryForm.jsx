@@ -6,7 +6,9 @@ function NewEntryForm({trip, entries, setEntries}) {
 
   const initialFormData = {
     date: '',
-    miles: ''
+    miles: '',
+    user_id: user.id,
+    trip_id: trip.id
   }
   
   const [formData, setFormData] = useState(initialFormData)
@@ -21,7 +23,7 @@ function NewEntryForm({trip, entries, setEntries}) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    fetch(`/api/users/${user.id}/trips/${trip.id}/entries`, {
+    fetch(`/api/entries`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

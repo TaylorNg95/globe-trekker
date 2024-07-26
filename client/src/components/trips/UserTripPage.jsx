@@ -14,17 +14,12 @@ function UserTripPage() {
   const starting_entries = user.entries.filter(entry => entry.trip_id == id)
   const [entries, setEntries] = useState(starting_entries)
 
-  const newEntry = {
-    "date": '',
-    "miles": ''
-  }
-
   return (
     <>
       <h1>{trip.name}</h1>
       <h2>{trip.total_miles}</h2>
       <div>
-        {entries.map(entry => <EntryCard key={entry.id} entry={entry}/>)}
+        {entries.map(entry => <EntryCard key={entry.id} entry={entry} entries={entries} setEntries={setEntries}/>)}
         <NewEntryForm trip={trip} entries={entries} setEntries={setEntries}/>
       </div>
     </>
