@@ -4,36 +4,35 @@ from flask_restful import Resource
 from models.entry import Entry
 from sqlalchemy.exc import IntegrityError
 
-class UserEntriesResource(Resource):
-    def get(self, user_id, trip_id):
-        entries = Entry.query.filter(Entry.user_id == user_id, Entry.trip_id == trip_id)
-        return [entry.to_dict(rules=['-trip', '-user',]) for entry in entries]
+class EntriesResource(Resource):
+    def get(self):
+        entries = Entry.query.all()
+        return [entry.to_dict(rules=['-user', '-trip',]) for entry in entries]
     
-    def post(self, user_id, trip_id):
+    def post(self):
         data = request.get_json()
         date = data.get('date')
         miles = data.get('miles')
-        user_id = user_id
-        trip_id = trip_id
+        user_id = data.get('user_id')
+        trip_id = data.get('trip_id')
         try:
-            entry = Entry(date=date, miles=miles, user_id=user_id, trip_id=trip_id)
+            entry = Entry(date=date, miles=float(miles), user_id=int(user_id), trip_id=int(trip_id))
             db.session.add(entry)
             db.session.commit()
             return entry.to_dict(rules=['-user', '-trip']), 201
         except IntegrityError:
             return {'error': 'Invalid input'}, 422
     
-class UserEntryResource(Resource):
-    def get(self, user_id, trip_id, entry_id):
-        entries = Entry.query.filter(Entry.user_id == user_id, Entry.trip_id == trip_id)
-        entry = [entry for entry in entries if entry.id == entry_id][0]
+class EntryResource(Resource):
+    def get(self, id):
+        entry = Entry.query.filter(Entry.id == id).first()
         return entry.to_dict(rules=['-user', '-trip']), 200
      
-    def patch(self, user_id, trip_id, entry_id):
+    def patch(self, id):
          data = request.get_json()
          date = data.get('date')
          miles = data.get('miles')
-         entry = Entry.query.filter(Entry.id == entry_id).first()
+         entry = Entry.query.filter(Entry.id == id).first()
          try:
              entry.date = date
              entry.miles = miles
@@ -43,8 +42,8 @@ class UserEntryResource(Resource):
          except:
              return {'error': 'Invalid input'}, 422
 
-    def delete(self, user_id, trip_id, entry_id):
-        entry = Entry.query.filter(Entry.id == entry_id).first()
+    def delete(self, id):
+        entry = Entry.query.filter(Entry.id == id).first()
         try:
             db.session.delete(entry)
             db.session.commit()
@@ -52,5 +51,5 @@ class UserEntryResource(Resource):
         except:
             return {'error': 'Invalid user id'}
 
-api.add_resource(UserEntriesResource, '/api/users/<int:user_id>/trips/<int:trip_id>/entries')
-api.add_resource(UserEntryResource, '/api/users/<int:user_id>/trips/<int:trip_id>/entries/<int:entry_id>')
+api.add_resource(EntriesResource, '/api/entries')
+api.add_resource(EntryResource, '/api/entries/<int:id>')
