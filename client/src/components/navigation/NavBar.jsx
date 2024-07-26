@@ -22,6 +22,7 @@ function NavBar() {
 
     const routes = loggedIn ? <>
         <li><Link to='/'>Home</Link></li>
+        <li><Link to='/my-trips'>My Trips</Link></li>
         <li><Link to='#' onClick={handleLogout}>Logout</Link></li>
     </> : <>
         <li><Link to='/login'>Login</Link></li>
