@@ -17,7 +17,6 @@ function NavBar() {
             logout()
             navigate('/login')
         })
-         // this is not working navigate('/')
     }
 
     const routes = loggedIn ? <>

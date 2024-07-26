@@ -1,13 +1,10 @@
 import {createContext, useState, useEffect} from 'react'
-import { useNavigate } from 'react-router-dom'
 
 const UserContext = createContext({})
 
 function UserProvider({children}) {
     const [loggedIn, setLoggedIn] = useState(null)
     const [user, setUser] = useState(false)
-
-    const navigate = useNavigate()
 
     useEffect(() => {
         fetch('/api/check_session')
@@ -22,7 +19,6 @@ function UserProvider({children}) {
         })
         .then(currentUser => {
             login(currentUser)
-            navigate('/')
         })
     }, [])
 

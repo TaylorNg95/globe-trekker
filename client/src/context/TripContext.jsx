@@ -4,14 +4,22 @@ const TripContext = createContext({})
 
 function TripProvider({children}) {
     const [trips, setTrips] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         fetch('/api/trips')
         .then(response => response.json())
-        .then(trips => setTrips(trips))
+        .then(trips => {
+            setTrips(trips)
+            setLoading(false)
+        })
     }, [])
 
-    return <TripContext.Provider value={{trips}}>{children}</TripContext.Provider>
+    if (loading == true){
+        return <h1>Loading...</h1>
+    } else {
+        return <TripContext.Provider value={{trips}}>{children}</TripContext.Provider>
+    }
 }
 
 export {TripContext, TripProvider}
