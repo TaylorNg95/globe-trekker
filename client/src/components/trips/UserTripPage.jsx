@@ -10,8 +10,6 @@ function UserTripPage() {
   const {user} = useContext(UserContext)
   const {id} = useParams()
   const trip = trips.find(trip => trip.id == id)
-  console.log(trips)
-  console.log(trip)
 
   const starting_entries = user.entries.filter(entry => entry.trip_id == id)
   const [entries, setEntries] = useState(starting_entries)

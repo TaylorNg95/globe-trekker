@@ -7,13 +7,19 @@ import TripList from './TripList'
 function UserTripsPage() {
 
   const {user} = useContext(UserContext)
+  let uniqueUserTrips = {}
+  user.trips.forEach(trip => {
+    uniqueUserTrips[trip.id] = trip
+  });
+  uniqueUserTrips = Object.values(uniqueUserTrips)
+  // extracts unique trips that the user has taken, based on all trips
 
   if (user){
     return (
       <>
         <h1>User Trips Page</h1>
         <h2>Here are your ongoing trips!</h2>
-        <TripList trips={user.trips}/>
+        <TripList trips={uniqueUserTrips}/>
         <Link to='/trip-menu'>Start New Trip</Link>
       </>
     )
