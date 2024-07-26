@@ -7,7 +7,7 @@ function UserTripsPage() {
 
   const {user} = useContext(UserContext)
   let uniqueUserTrips = {}
-  user.trips.forEach(trip => {
+  user.trips.forEach(trip => { // MY PROBLEM IS HERE
     uniqueUserTrips[trip.id] = trip
   });
   uniqueUserTrips = Object.values(uniqueUserTrips)

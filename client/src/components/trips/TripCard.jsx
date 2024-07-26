@@ -10,7 +10,7 @@ function TripCard({trip}) {
   const {entries} = useContext(EntryContext)
   const tripEntries = entries.filter(entry => entry.trip_id == trip.id)
   const milesAchieved = tripEntries.reduce((accumulator, entry) => {
-    return accumulator + entry.miles
+    return Math.round(accumulator + entry.miles)
   }, 0)
 
   function handleClick(){

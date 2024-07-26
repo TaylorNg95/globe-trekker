@@ -4,7 +4,7 @@ import { EntryContext } from '../../../context/EntryContext'
 
 function NewEntryForm({trip}) {
   const {user} = useContext(UserContext)
-  const {entries, setEntries} = useContext(EntryContext)
+  const {addEntry} = useContext(EntryContext)
 
   const initialFormData = {
     date: '',
@@ -25,28 +25,8 @@ function NewEntryForm({trip}) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    fetch(`/api/entries`, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    })
-    .then(response => {
-        if (response.status == 201) {
-            return response.json()
-        } else if (response.status == 422) {
-            return response.json().then(error => {
-                return Promise.reject(error)
-            })
-        }
-    })
-    .then(entry => {
-      console.log(entry)
-      setEntries([...entries, entry])
-      setFormData(initialFormData)
-    })
+    addEntry(formData)
+    setFormData(initialFormData)
   }
 
   return (

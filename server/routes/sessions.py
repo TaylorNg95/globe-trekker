@@ -39,7 +39,7 @@ class CheckSession(Resource):
         user_id = session.get('user_id')
         if user_id:
             user = User.query.filter(User.id == user_id).first()
-            return user.to_dict(), 200
+            return user.to_dict(rules=['trips',]), 200
         else:
             return {'error': 'User not logged in'}, 401
 
