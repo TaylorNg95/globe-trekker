@@ -5,12 +5,11 @@ const UserContext = createContext({})
 function UserProvider({children}) {
     const [loggedIn, setLoggedIn] = useState(null)
     const [user, setUser] = useState(false)
-    console.log('user provider')
+    const [entries, setEntries] = useState(null)
 
     useEffect(() => {
         fetch('/api/check_session')
         .then(response => {
-            console.log('user use effect')
             if (response.status == 200) {
                 return response.json()
             } else if (response.status == 401) {
@@ -27,6 +26,7 @@ function UserProvider({children}) {
     function login(user){
         setLoggedIn(true)
         setUser(user)
+        setEntries(user.entries)
     }
 
     function logout(){
@@ -34,7 +34,39 @@ function UserProvider({children}) {
         setUser(null)
     }
 
-    return <UserContext.Provider value={{loggedIn, user, login, logout}}>{children}</UserContext.Provider>
+    function addEntry(entry) {
+        fetch(`/api/entries`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(entry)
+        })
+        .then(response => {
+            if (response.status == 201) {
+                return response.json()
+            } else if (response.status == 422) {
+                return response.json().then(error => {
+                    return Promise.reject(error)
+                })
+            }
+        })
+        .then(newEntry => {
+          setEntries([...entries, newEntry])
+        })
+    }
+
+    function deleteEntry(id) {
+        fetch(`/api/entries/${id}`, {
+          method: 'DELETE'
+        })
+        .then(response => {
+          setEntries(entries.filter(ent => ent.id != id))
+        })
+      }
+
+    return <UserContext.Provider value={{loggedIn, user, login, logout, entries, setEntries, addEntry, deleteEntry}}>{children}</UserContext.Provider>
 }
 
 export {UserContext, UserProvider}

@@ -1,9 +1,9 @@
 import {useContext} from 'react'
-import { EntryContext } from '../../../context/EntryContext'
+import { UserContext } from '../../../context/UserContext'
 
 function EntryCard({entry}) {
 
-  const {deleteEntry} = useContext(EntryContext)
+  const {deleteEntry} = useContext(UserContext)
 
   function handleEdit() {
     console.log('handling edit')

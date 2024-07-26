@@ -8,7 +8,6 @@ import UserTripPage from './components/trips/UserTripPage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { UserProvider } from './context/UserContext'
 import { TripProvider } from './context/TripContext'
-import { EntryProvider } from './context/EntryContext'
 
 function App() {
 
@@ -16,17 +15,15 @@ function App() {
     <BrowserRouter>
       <UserProvider>
         <TripProvider>
-          <EntryProvider>
-            <NavBar />
-            <Routes>
-              <Route path='/' element={<Home />}/>
-              <Route path='/login' element={<Login />}/>
-              <Route path='/signup' element={<Signup />}/>
-              <Route path='/my-trips' element={<UserTripsPage />}/>
-              <Route path='/my-trips/:id' element={<UserTripPage />}/>
-              <Route path='/trip-menu' element={<TripMenuPage />}/>
-            </Routes>
-          </EntryProvider>
+          <NavBar />
+          <Routes>
+            <Route path='/' element={<Home />}/>
+            <Route path='/login' element={<Login />}/>
+            <Route path='/signup' element={<Signup />}/>
+            <Route path='/my-trips' element={<UserTripsPage />}/>
+            <Route path='/my-trips/:id' element={<UserTripPage />}/>
+            <Route path='/trip-menu' element={<TripMenuPage />}/>
+          </Routes>
         </TripProvider>
       </UserProvider>
     </BrowserRouter>

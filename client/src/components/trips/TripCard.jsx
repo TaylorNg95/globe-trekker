@@ -1,13 +1,13 @@
 import {useContext} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { EntryContext } from '../../context/EntryContext'
+import { UserContext } from '../../context/UserContext'
 import ProgressBar from './ProgressBar'
 
 function TripCard({trip}) {
 
   const navigate = useNavigate()
 
-  const {entries} = useContext(EntryContext)
+  const {entries} = useContext(UserContext)
   const tripEntries = entries.filter(entry => entry.trip_id == trip.id)
   const milesAchieved = tripEntries.reduce((accumulator, entry) => {
     return Math.round(accumulator + entry.miles)
