@@ -2,7 +2,6 @@ import {useContext, useState} from 'react'
 import { UserContext } from '../../../context/UserContext'
 
 function NewEntryForm({trip, entries, setEntries}) {
-  console.log(trip)
   const {user} = useContext(UserContext)
 
   const initialFormData = {
@@ -40,6 +39,7 @@ function NewEntryForm({trip, entries, setEntries}) {
         }
     })
     .then(entry => {
+      console.log(entry)
       setEntries([...entries, entry])
       setFormData(initialFormData)
     })

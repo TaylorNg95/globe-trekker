@@ -53,7 +53,7 @@ function Login() {
         <h1>Login Form</h1>
         <form onSubmit={handleSubmit}>
             <label>Username: <input type='text' name='username' value={formData.username} onChange={handleChange}/></label><br />
-            <label>Password: <input type='password' name='password' value={formData.password} onChange={handleChange}/></label><br />
+            <label>Password: <input type='password' name='password' autoComplete='on' value={formData.password} onChange={handleChange}/></label><br />
             <input type='submit' value='Submit'/>
         </form>
     </>

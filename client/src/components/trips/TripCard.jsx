@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function TripCard({trip}) {
-// /my-trips/:id
+
   const navigate = useNavigate()
 
   function handleClick(){
