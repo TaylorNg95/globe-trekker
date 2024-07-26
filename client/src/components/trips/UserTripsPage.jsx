@@ -1,7 +1,6 @@
 import {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
-import { TripContext } from '../../context/TripContext'
 import TripList from './TripList'
 
 function UserTripsPage() {
@@ -12,7 +11,7 @@ function UserTripsPage() {
     uniqueUserTrips[trip.id] = trip
   });
   uniqueUserTrips = Object.values(uniqueUserTrips)
-  // extracts unique trips that the user has taken, based on all trips
+  // extracts unique trips that the user has taken, based on all user trips
 
   if (user){
     return (

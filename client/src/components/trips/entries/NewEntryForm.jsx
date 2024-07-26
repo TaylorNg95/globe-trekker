@@ -1,8 +1,10 @@
 import {useContext, useState} from 'react'
 import { UserContext } from '../../../context/UserContext'
+import { EntryContext } from '../../../context/EntryContext'
 
-function NewEntryForm({trip, entries, setEntries}) {
+function NewEntryForm({trip}) {
   const {user} = useContext(UserContext)
+  const {entries, setEntries} = useContext(EntryContext)
 
   const initialFormData = {
     date: '',

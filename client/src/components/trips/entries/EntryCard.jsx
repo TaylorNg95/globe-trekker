@@ -1,6 +1,9 @@
-import React from 'react'
+import {useContext} from 'react'
+import { EntryContext } from '../../../context/EntryContext'
 
-function EntryCard({entry, entries, setEntries}) {
+function EntryCard({entry}) {
+
+  const {entries, setEntries} = useContext(EntryContext)
 
   function handleEdit() {
     console.log('handling edit')
