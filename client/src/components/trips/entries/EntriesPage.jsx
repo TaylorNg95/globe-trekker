@@ -1,12 +1,12 @@
 import { useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import { TripContext } from '../../context/TripContext'
-import { UserContext } from '../../context/UserContext'
-import EntryCard from './entries/EntryCard'
-import NewEntryForm from './entries/NewEntryForm'
-import ProgressBar from './ProgressBar'
+import { TripContext } from '../../../context/TripContext'
+import { UserContext } from '../../../context/UserContext'
+import EntryItem from './EntryItem'
+import NewEntryForm from './NewEntryForm'
+import ProgressBar from '../ProgressBar'
 
-function UserTripPage() {
+function EntriesPage() {
   const {trips} = useContext(TripContext)
   const {id} = useParams()
   const trip = trips.find(trip => trip.id == id)
@@ -23,11 +23,11 @@ function UserTripPage() {
       <h2>{trip.total_miles}</h2>
       <ProgressBar progress={milesAchieved} total={trip.total_miles}/>
       <div>
-        {tripEntries.map(entry => <EntryCard key={entry.id} entry={entry}/>)}
+        {tripEntries.map(entry => <EntryItem key={entry.id} entry={entry}/>)}
         <NewEntryForm trip={trip}/>
       </div>
     </>
   )
 }
 
-export default UserTripPage
+export default EntriesPage

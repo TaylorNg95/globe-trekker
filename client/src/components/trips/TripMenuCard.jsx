@@ -1,12 +1,9 @@
 import {useContext} from 'react'
-import TripInfo from './TripInfo'
 import { UserContext } from '../../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 
 function TripMenuCard({trip}) {
-  const {entries, setEntries, addEntry, user} = useContext(UserContext)
-
-  const navigate = useNavigate()
+  const {addEntry, user} = useContext(UserContext)
 
   const newTripEntry = {
     date: '00-00-00',
@@ -17,14 +14,14 @@ function TripMenuCard({trip}) {
   // Date is held as a dummy string, as no '0' date entries will be shown
 
   function handleClick(){
-    addEntry(newTripEntry)
-    setEntries([...entries, newTripEntry])
-    navigate('/my-trips')
+    addEntry(newTripEntry) // *** TBD: needs to update with the user entries
   }
 
   return (
     <div onClick={handleClick}>
-        <TripInfo trip={trip}/>
+        <h2>TripMenuCard</h2>
+        <p>{trip.name}</p>
+        <p>Total Miles: {trip.total_miles}</p>
     </div>
   )
 }

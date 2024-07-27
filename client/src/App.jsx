@@ -3,8 +3,8 @@ import Home from './components/static/Home'
 import Login from './components/sessions/Login'
 import Signup from './components/sessions/Signup'
 import TripMenuPage from './components/trips/TripMenuPage'
-import UserTripsPage from './components/trips/UserTripsPage'
-import UserTripPage from './components/trips/UserTripPage'
+import MyTripsPage from './components/trips/MyTripsPage'
+import EntriesPage from './components/trips/entries/EntriesPage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { UserProvider } from './context/UserContext'
 import { TripProvider } from './context/TripContext'
@@ -20,8 +20,8 @@ function App() {
             <Route path='/' element={<Home />}/>
             <Route path='/login' element={<Login />}/>
             <Route path='/signup' element={<Signup />}/>
-            <Route path='/my-trips' element={<UserTripsPage />}/>
-            <Route path='/my-trips/:id' element={<UserTripPage />}/>
+            <Route path='/my-trips' element={<MyTripsPage />}/>
+            <Route path='/my-trips/:id' element={<EntriesPage />}/>
             <Route path='/trip-menu' element={<TripMenuPage />}/>
           </Routes>
         </TripProvider>

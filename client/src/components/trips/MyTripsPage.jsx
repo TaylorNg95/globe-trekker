@@ -1,9 +1,9 @@
 import {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
-import UserTripCard from './UserTripCard'
+import MyTripsCard from './MyTripsCard'
 
-function UserTripsPage() {
+function MyTripsPage() {
 
   const {user} = useContext(UserContext)
   let uniqueUserTrips = {}
@@ -21,7 +21,7 @@ function UserTripsPage() {
         <h1>User Trips Page</h1>
         <h2>Here are your ongoing trips!</h2>
         <div>
-          {user.trips ? uniqueUserTrips.map(trip => <UserTripCard key={trip.id} trip={trip}/>) : null}
+          {user.trips ? uniqueUserTrips.map(trip => <MyTripsCard key={trip.id} trip={trip}/>) : null}
         </div>
         <Link to='/trip-menu'>Start New Trip</Link>
       </>
@@ -29,4 +29,4 @@ function UserTripsPage() {
   }
 }
 
-export default UserTripsPage
+export default MyTripsPage

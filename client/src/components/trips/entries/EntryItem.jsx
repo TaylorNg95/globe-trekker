@@ -1,7 +1,7 @@
 import {useContext} from 'react'
 import { UserContext } from '../../../context/UserContext'
 
-function EntryCard({entry}) {
+function EntryItem({entry}) {
 
   const {deleteEntry} = useContext(UserContext)
 
@@ -17,4 +17,4 @@ function EntryCard({entry}) {
   )
 }
 
-export default EntryCard
+export default EntryItem
