@@ -13,6 +13,7 @@ function UserProvider({children}) {
             if (response.status == 200) {
                 const user = await response.json()
                 login(user)
+                console.log(user)
             }
         }
         checkUser()
@@ -41,6 +42,7 @@ function UserProvider({children}) {
         if (response.status == 201){
             const newEntry = await response.json()
             setEntries([...entries, newEntry])
+            console.log(user)
         } else {
             const error = await response.json()
             console.log(error)
