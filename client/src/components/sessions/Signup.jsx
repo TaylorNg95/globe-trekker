@@ -34,12 +34,13 @@ function Signup() {
         },
         body: JSON.stringify(formData)
       })
-      if (response.status == 200){
+      if (response.status == 201){
         const user = await response.json()
         login(user)
         navigate('/')
       } else {
-        console.log('Oops something went wrong')
+        const error = await response.json()
+        console.log(error)
       }
       setFormData(initialFormData)
     }

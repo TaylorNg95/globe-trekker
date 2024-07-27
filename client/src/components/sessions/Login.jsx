@@ -38,7 +38,8 @@ function Login() {
         login(user)
         navigate('/')
       } else {
-        console.log('Oops something went wrong')
+        const error = await response.json()
+        console.log(error)
       }
       setFormData(initialFormData)
     }

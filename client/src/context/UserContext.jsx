@@ -42,17 +42,16 @@ function UserProvider({children}) {
             const newEntry = await response.json()
             setEntries([...entries, newEntry])
         } else {
-            console.log('Oops something went wrong')
+            const error = await response.json()
+            console.log(error)
         }
     }
 
     async function deleteEntry(id) {
-        const response = await fetch(`/api/entries/${id}`, {
+        await fetch(`/api/entries/${id}`, {
           method: 'DELETE'
         })
-        if (response.status == 204){
-            setEntries(entries.filter(ent => ent.id != id))
-        }
+        setEntries(entries.filter(ent => ent.id != id))
       }
 
     return <UserContext.Provider value={{loggedIn, user, login, logout, entries, setEntries, addEntry, deleteEntry}}>{children}</UserContext.Provider>
