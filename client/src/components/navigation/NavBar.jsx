@@ -9,14 +9,12 @@ function NavBar() {
 
     const navigate = useNavigate()
 
-    function handleLogout() {
-        fetch('/api/logout', {
+    async function handleLogout() {
+        await fetch('/api/logout', {
             method: 'DELETE'
         })
-        .then(response => {
-            logout()
-            navigate('/login')
-        })
+        logout()
+        navigate('/login')
     }
 
     const routes = loggedIn ? <>

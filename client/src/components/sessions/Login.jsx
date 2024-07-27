@@ -24,28 +24,25 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    fetch('/api/login', {
+    async function loginUser() {
+      const response = await fetch('/api/login', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
-    })
-    .then(response => {
-        if (response.status == 200) {
-            return response.json()
-        } else if (response.status == 422) {
-            return response.json().then(error => {
-                return Promise.reject(error)
-            })
-        }
-    })
-    .then(user => {
+      })
+      if (response.status == 200){
+        const user = await response.json()
         login(user)
         navigate('/')
-    })
-    setFormData(initialFormData)
+      } else {
+        console.log('Oops something went wrong')
+      }
+      setFormData(initialFormData)
+    }
+    loginUser()
   }
 
   return (

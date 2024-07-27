@@ -8,19 +8,14 @@ function UserProvider({children}) {
     const [entries, setEntries] = useState(null)
 
     useEffect(() => {
-        fetch('/api/check_session')
-        .then(response => {
+        async function checkUser() {
+            const response = await fetch('/api/check_session')
             if (response.status == 200) {
-                return response.json()
-            } else if (response.status == 401) {
-                return response.json().then(error => {
-                    return Promise.reject(error)
-                })
+                const user = await response.json()
+                login(user)
             }
-        })
-        .then(currentUser => {
-            login(currentUser)
-        })
+        }
+        checkUser()
     }, [])
 
     function login(user){
