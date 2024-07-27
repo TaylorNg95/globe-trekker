@@ -7,13 +7,13 @@ function TripProvider({children}) {
     const [loading, setLoading] = useState(true)
     console.log('trips provider')
     useEffect(() => {
-        fetch('/api/trips')
-        .then(response => response.json())
-        .then(trips => {
+        async function getTrips() {
+            const response = await fetch('/api/trips')
+            const trips = await response.json()
             setTrips(trips)
             setLoading(false)
-            console.log('trip use effect')
-        })
+        }
+        getTrips()
     }, [])
 
     if (loading == true){
