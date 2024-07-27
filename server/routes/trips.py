@@ -14,8 +14,9 @@ class TripsResource(Resource):
         name = data.get('name')
         country = data.get('country')
         total_miles = data.get('total_miles')
+        custom = data.get('custom')
         try:
-            trip = Trip(name=name, country=country, total_miles=total_miles)
+            trip = Trip(name=name, country=country, total_miles=total_miles, custom=custom)
             db.session.add(trip)
             db.session.commit()
             return trip.to_dict(), 201
