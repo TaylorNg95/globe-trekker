@@ -32,7 +32,7 @@ function UserProvider({children}) {
     }
 
     async function addEntry(entry) {
-        const response = await fetch(`/api/entries`, {
+        const response = await fetch('/api/entries', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -45,6 +45,29 @@ function UserProvider({children}) {
             setEntries([...entries, newEntry])
         } else {
             const error = await response.json()
+            console.log(error)
+        }
+    }
+
+    async function editEntry(entry, id) {
+        const response = await fetch(`/api/entries/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(entry)
+        })
+        if (response.status == 200){
+            const editedEntry = await response.json()
+            setEntries(entries.map(ent => {
+                if (ent.id == id){
+                    return editedEntry
+                } else return ent
+            }))
+        } else {
+            const error = await response.json()
+            console.log(error)
         }
     }
 
@@ -58,7 +81,7 @@ function UserProvider({children}) {
     if (loading == true) {
         return <h1>Loading...</h1>
     } else {
-        return <UserContext.Provider value={{loggedIn, user, login, logout, entries, setEntries, addEntry, deleteEntry}}>{children}</UserContext.Provider>
+        return <UserContext.Provider value={{loggedIn, user, login, logout, entries, setEntries, addEntry, editEntry, deleteEntry}}>{children}</UserContext.Provider>
     }
 }
 

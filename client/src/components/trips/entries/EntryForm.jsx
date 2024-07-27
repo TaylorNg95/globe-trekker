@@ -1,8 +1,8 @@
 import {useContext, useState} from 'react'
 import { UserContext } from '../../../context/UserContext'
 
-function EntryForm({trip, editMode}) {
-  const {user, addEntry} = useContext(UserContext)
+function EntryForm({trip, entry, editMode}) {
+  const {user, addEntry, editEntry} = useContext(UserContext)
 
   const initialFormData = {
     date: '',
@@ -24,7 +24,7 @@ function EntryForm({trip, editMode}) {
   function handleSubmit(e) {
     e.preventDefault()
     if (editMode) {
-      console.log('handling edit mode')
+      editEntry(formData, entry.id)
     } else {
       addEntry(formData)
     }

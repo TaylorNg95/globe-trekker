@@ -16,7 +16,7 @@ function EntryItem({entry, trip}) {
     <div>
       {entry.date} || {entry.miles} mile{entry.miles == 1.0 ? '' : 's'}
       <button onClick={() => handleEdit(entry.id)}>Edit</button><button onClick={() => deleteEntry(entry.id)}>Delete</button>
-      {editMode ? <EntryForm trip={trip} editMode={editMode}/> : null}
+      {editMode ? <EntryForm trip={trip} entry={entry} editMode={editMode}/> : null}
     </div>
   )
 }
