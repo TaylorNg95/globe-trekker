@@ -1,7 +1,7 @@
 import {useContext, useState} from 'react'
 import { UserContext } from '../../../context/UserContext'
 
-function EntryForm({trip, entry, editMode}) {
+function EntryForm({trip, entry, editMode, setEditMode}) {
   const {user, addEntry, editEntry} = useContext(UserContext)
 
   const initialFormData = {
@@ -25,6 +25,7 @@ function EntryForm({trip, entry, editMode}) {
     e.preventDefault()
     if (editMode) {
       editEntry(formData, entry.id)
+      setEditMode(!editMode)
     } else {
       addEntry(formData)
     }
