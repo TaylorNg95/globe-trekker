@@ -1,46 +1,42 @@
 import {useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { TripContext } from '../../context/TripContext'
+import {useFormik} from 'formik'
+import * as yup from 'yup'
 
 function CustomTripForm() {
   const {addTrip} = useContext(TripContext)
 
   const navigate = useNavigate()
 
-  const initialFormData = {
+  const initialValues = {
     name: '',
     country: '',
     total_miles: '',
     custom: 1
   }
 
-  // Add the custom trip; get the trip id as a response
-  // Create a 0 entry based on that trip ID
-  
-  const [formData, setFormData] = useState(initialFormData)
+  const validationSchema = yup.object({
 
-  function handleChange(e){
-    const new_key = e.target.name
-    const new_value = e.target.value
-    setFormData({
-        ...formData, [new_key]: new_value
-    })
-  }
+  })
 
-  function handleSubmit(e) {
-    e.preventDefault()
-    addTrip(formData)
-    navigate('/my-trips')
-    setFormData(initialFormData)
-  }
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: function(values, {resetForm}){
+      addTrip(values)
+      resetForm()
+      navigate('/my-trips')
+    }
+  })
 
   return (
     <>
       <div>CustomTripForm</div>
-      <form onSubmit={handleSubmit}>
-      <label>Name: <input type='text' name='name' value={formData.name} onChange={handleChange}/></label><br />
-      <label>Country: <input type='text' name='country' value={formData.country} onChange={handleChange}/></label><br />
-      <label>Total Miles: <input type='number' name='total_miles' value={formData.total_miles} onChange={handleChange}/></label><br />
+      <form onSubmit={formik.handleSubmit}>
+      <label>Name: <input type='text' name='name' value={formik.values.name} onChange={formik.handleChange}/></label><br />
+      <label>Country: <input type='text' name='country' value={formik.values.country} onChange={formik.handleChange}/></label><br />
+      <label>Total Miles: <input type='number' name='total_miles' value={formik.values.total_miles} onChange={formik.handleChange}/></label><br />
       <input type='submit' value='Add Custom Trip'/>
       </form>
     </>
