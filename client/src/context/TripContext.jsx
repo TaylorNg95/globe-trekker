@@ -1,11 +1,14 @@
-import {createContext, useState, useEffect} from 'react'
+import {createContext, useState, useEffect, useContext} from 'react'
+import { UserContext } from './UserContext'
 
 const TripContext = createContext({})
 
 function TripProvider({children}) {
     const [trips, setTrips] = useState([])
     const [loading, setLoading] = useState(true)
-    console.log('trips provider')
+
+    const {user, addEntry} = useContext(UserContext)
+    
     useEffect(() => {
         async function getTrips() {
             const response = await fetch('/api/trips')
@@ -16,10 +19,39 @@ function TripProvider({children}) {
         getTrips()
     }, [])
 
+    const newEntry = {
+
+    }
+    // When a new trip is created, a default entry must be created at the same time
+
+    async function addTrip(trip) {
+        const response = await fetch('/api/trips', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(trip)
+        })
+        if (response.status == 201){
+            const newTrip = await response.json()
+            setTrips([...trips, newTrip])
+            addEntry({
+                date: '00-00-00',
+                miles: 0,
+                user_id: user.id,
+                trip_id: newTrip.id
+            })
+        } else {
+            const error = await response.json()
+            console.log(error)
+        }
+    }
+
     if (loading == true){
         return <h1>Loading...</h1>
     } else {
-        return <TripContext.Provider value={{trips}}>{children}</TripContext.Provider>
+        return <TripContext.Provider value={{trips, addTrip}}>{children}</TripContext.Provider>
     }
 }
 

@@ -31,7 +31,7 @@ function NewEntryForm({trip}) {
     <>
       <div>NewEntryForm</div>
       <form onSubmit={handleSubmit}>
-      <label>Date (mm-dd-yy): <input type='string' name='date' value={formData.date} onChange={handleChange}/></label><br />
+      <label>Date (mm-dd-yy): <input type='text' name='date' value={formData.date} onChange={handleChange}/></label><br />
       <label>Miles: <input type='number' step='0.1' name='miles' value={formData.miles} onChange={handleChange}/></label><br />
       <input type='submit' value='Add New Entry'/>
       </form>

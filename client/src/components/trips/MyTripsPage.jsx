@@ -7,13 +7,8 @@ import { TripContext } from '../../context/TripContext'
 function MyTripsPage() {
 
   const {user} = useContext(UserContext)
-  let uniqueUserTrips = {}
-  if (user.trips) {
-    user.trips.forEach(trip => {
-      uniqueUserTrips[trip.id] = trip
-    });
-    uniqueUserTrips = Object.values(uniqueUserTrips)
-  }
+
+  // Might need to check first if there is a user
   const {trips} = useContext(TripContext)
   const {entries} = useContext(UserContext)
   const tripIDs = entries.map(entry => entry.trip_id)
