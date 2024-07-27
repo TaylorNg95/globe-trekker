@@ -1,10 +1,8 @@
 import {useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../../context/UserContext'
 import { TripContext } from '../../context/TripContext'
 
 function CustomTripForm() {
-  const {user, addEntry} = useContext(UserContext)
   const {addTrip} = useContext(TripContext)
 
   const navigate = useNavigate()

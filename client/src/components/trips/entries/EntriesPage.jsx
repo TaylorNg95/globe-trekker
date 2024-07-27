@@ -12,7 +12,7 @@ function EntriesPage() {
   const trip = trips.find(trip => trip.id == id)
   
   const {entries} = useContext(UserContext)
-  const tripEntries = entries.filter(entry => entry.trip_id == trip.id & entry.miles != 0)
+  const tripEntries = entries.filter(entry => entry.trip_id == trip.id && entry.miles != 0)
   const milesAchieved = tripEntries.reduce((accumulator, entry) => {
     return Math.round(accumulator + entry.miles)
   }, 0)

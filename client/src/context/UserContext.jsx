@@ -78,9 +78,8 @@ function UserProvider({children}) {
         setEntries(entries.filter(ent => ent.id != id))
       }
     
-    if (loading == true) {
-        return <h1>Loading...</h1>
-    } else {
+    {
+        console.log('rendering user context provider')
         return <UserContext.Provider value={{loggedIn, user, login, logout, entries, setEntries, addEntry, editEntry, deleteEntry}}>{children}</UserContext.Provider>
     }
 }

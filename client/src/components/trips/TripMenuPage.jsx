@@ -6,8 +6,11 @@ import { UserContext } from '../../context/UserContext'
 
 function TripMenuPage() {
   const {trips} = useContext(TripContext)
-  
-  const availableTrips = trips.filter(trip => trip.custom == 0)
+  const {entries} = useContext(UserContext)
+
+  const entriesIDs = entries.map(entry => entry.trip_id)
+  console.log(entriesIDs)
+  const availableTrips = trips.filter(trip => trip.custom == 0 && !entriesIDs.includes(trip.id))
   // Exclude custom trips (because they either belong to another user or we've
   // created it and therefore it is ongoing).
 
