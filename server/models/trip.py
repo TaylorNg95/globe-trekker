@@ -11,6 +11,7 @@ class Trip(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable=False)
     country = db.Column(db.String, nullable=False)
     total_miles = db.Column(db.Integer, nullable=False)
+    custom = db.Column(db.Boolean, default=False)
 
     entries = db.relationship('Entry', back_populates='trip', cascade='all, delete-orphan')
     users = association_proxy('entries', 'user', creator=lambda user_obj: Entry(user=user_obj))
