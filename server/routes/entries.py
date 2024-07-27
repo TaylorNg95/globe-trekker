@@ -7,7 +7,7 @@ from sqlalchemy.exc import IntegrityError
 class EntriesResource(Resource):
     def get(self):
         entries = Entry.query.all()
-        return [entry.to_dict(rules=['-user', '-trip',]) for entry in entries]
+        return [entry.to_dict(rules=['-user',]) for entry in entries]
     
     def post(self):
         data = request.get_json()
@@ -19,14 +19,14 @@ class EntriesResource(Resource):
             entry = Entry(date=date, miles=float(miles), user_id=int(user_id), trip_id=int(trip_id))
             db.session.add(entry)
             db.session.commit()
-            return entry.to_dict(rules=['-user', '-trip']), 201
+            return entry.to_dict(rules=['-user',]), 201
         except:
             return {'error': 'Invalid input'}, 422
     
 class EntryResource(Resource):
     def get(self, id):
         entry = Entry.query.filter(Entry.id == id).first()
-        return entry.to_dict(rules=['-user', '-trip']), 200
+        return entry.to_dict(rules=['-user',]), 200
      
     def patch(self, id):
          data = request.get_json()
@@ -38,7 +38,7 @@ class EntryResource(Resource):
              entry.miles = miles
              db.session.add(entry)
              db.session.commit()
-             return entry.to_dict(rules=['-trip', '-user']), 200
+             return entry.to_dict(rules=['-user',]), 200
          except:
              return {'error': 'Invalid input'}, 422
 
