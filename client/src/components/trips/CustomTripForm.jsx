@@ -13,6 +13,7 @@ function CustomTripForm() {
     name: '',
     country: '',
     total_miles: '',
+    custom: 1
   }
 
   // Add the custom trip; get the trip id as a response

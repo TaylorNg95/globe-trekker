@@ -53,7 +53,7 @@ function Signup() {
         <form onSubmit={handleSubmit}>
             <label>Name: <input type='text' name='name' value={formData.name} onChange={handleChange}/></label><br />
             <label>Username: <input type='text' name='username' value={formData.username} onChange={handleChange}/></label><br />
-            <label>Password: <input type='password' name='password' value={formData.password} onChange={handleChange}/></label><br />
+            <label>Password: <input type='password' name='password' autoComplete='on' value={formData.password} onChange={handleChange}/></label><br />
             <input type='submit' value='Submit'/>
         </form>
     </>
