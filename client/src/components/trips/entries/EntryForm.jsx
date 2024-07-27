@@ -1,7 +1,7 @@
 import {useContext, useState} from 'react'
 import { UserContext } from '../../../context/UserContext'
 
-function NewEntryForm({trip}) {
+function EntryForm({trip, editMode}) {
   const {user, addEntry} = useContext(UserContext)
 
   const initialFormData = {
@@ -23,20 +23,23 @@ function NewEntryForm({trip}) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    addEntry(formData)
+    if (editMode) {
+      console.log('handling edit mode')
+    } else {
+      addEntry(formData)
+    }
     setFormData(initialFormData)
   }
 
   return (
     <>
-      <div>NewEntryForm</div>
       <form onSubmit={handleSubmit}>
-      <label>Date (mm-dd-yy): <input type='text' name='date' value={formData.date} onChange={handleChange}/></label><br />
-      <label>Miles: <input type='number' step='0.1' name='miles' value={formData.miles} onChange={handleChange}/></label><br />
-      <input type='submit' value='Add New Entry'/>
+        <input placeholder='Date (mm-dd-yy)' type='text' name='date' value={formData.date} onChange={handleChange}/>
+        <input placeholder='Miles' type='number' step='0.1' name='miles' value={formData.miles} onChange={handleChange}/><br />
+        <input type='submit' value={editMode ? 'Edit Entry' : 'Add Entry'}/>
       </form>
     </>
   )
 }
 
-export default NewEntryForm
+export default EntryForm

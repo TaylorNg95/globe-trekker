@@ -6,6 +6,7 @@ function UserProvider({children}) {
     const [loggedIn, setLoggedIn] = useState(null)
     const [user, setUser] = useState(false)
     const [entries, setEntries] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         async function checkUser() {
@@ -13,8 +14,8 @@ function UserProvider({children}) {
             if (response.status == 200) {
                 const user = await response.json()
                 login(user)
-                console.log(user)
             }
+            setLoading(false)
         }
         checkUser()
     }, [])
@@ -42,10 +43,8 @@ function UserProvider({children}) {
         if (response.status == 201){
             const newEntry = await response.json()
             setEntries([...entries, newEntry])
-            console.log(user)
         } else {
             const error = await response.json()
-            console.log(error)
         }
     }
 
@@ -55,8 +54,12 @@ function UserProvider({children}) {
         })
         setEntries(entries.filter(ent => ent.id != id))
       }
-
-    return <UserContext.Provider value={{loggedIn, user, login, logout, entries, setEntries, addEntry, deleteEntry}}>{children}</UserContext.Provider>
+    
+    if (loading == true) {
+        return <h1>Loading...</h1>
+    } else {
+        return <UserContext.Provider value={{loggedIn, user, login, logout, entries, setEntries, addEntry, deleteEntry}}>{children}</UserContext.Provider>
+    }
 }
 
 export {UserContext, UserProvider}

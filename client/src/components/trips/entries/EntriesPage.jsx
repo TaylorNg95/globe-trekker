@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { TripContext } from '../../../context/TripContext'
 import { UserContext } from '../../../context/UserContext'
 import EntryItem from './EntryItem'
-import NewEntryForm from './NewEntryForm'
+import EntryForm from './EntryForm'
 import ProgressBar from '../ProgressBar'
 
 function EntriesPage() {
@@ -23,8 +23,8 @@ function EntriesPage() {
       <h2>{trip.total_miles}</h2>
       <ProgressBar progress={milesAchieved} total={trip.total_miles}/>
       <div>
-        {tripEntries.map(entry => <EntryItem key={entry.id} entry={entry}/>)}
-        <NewEntryForm trip={trip}/>
+        {tripEntries.map(entry => <EntryItem key={entry.id} entry={entry} trip={trip}/>)}
+        <EntryForm trip={trip} editMode={false}/>
       </div>
     </>
   )
