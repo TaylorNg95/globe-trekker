@@ -21,13 +21,14 @@ function EntryForm({trip, entry, editMode, setEditMode}) {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    validateOnChange: false,
-    onSubmit: function(values) {
+    onSubmit: function(values, {resetForm}) {
       if (editMode) {
         editEntry(values, entry.id)
         setEditMode(!editMode)
+        resetForm()
       } else {
         addEntry(values)
+        resetForm()
       }
     }
   })
