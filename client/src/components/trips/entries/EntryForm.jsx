@@ -1,42 +1,42 @@
 import {useContext, useState} from 'react'
+import {useFormik} from 'formik'
+import * as yup from 'yup'
 import { UserContext } from '../../../context/UserContext'
 
 function EntryForm({trip, entry, editMode, setEditMode}) {
   const {user, addEntry, editEntry} = useContext(UserContext)
 
-  const initialFormData = {
+  const initialValues = {
     date: '',
     miles: '',
     user_id: user.id,
     trip_id: trip.id
   }
-  
-  const [formData, setFormData] = useState(initialFormData)
 
-  function handleChange(e){
-    const new_key = e.target.name
-    const new_value = e.target.value
-    setFormData({
-        ...formData, [new_key]: new_value
-    })
-  }
+  const validationSchema = yup.object({
+    date: yup.string().matches(/\d{2}-\d{2}-\d{2}/, 'Invalid date').required(),
+    miles: yup.number().required()
+  })
 
-  function handleSubmit(e) {
-    e.preventDefault()
-    if (editMode) {
-      editEntry(formData, entry.id)
-      setEditMode(!editMode)
-    } else {
-      addEntry(formData)
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    validateOnChange: false,
+    onSubmit: function(values) {
+      if (editMode) {
+        editEntry(values, entry.id)
+        setEditMode(!editMode)
+      } else {
+        addEntry(values)
+      }
     }
-    setFormData(initialFormData)
-  }
+  })
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input placeholder='Date (mm-dd-yy)' type='text' name='date' value={formData.date} onChange={handleChange}/>
-        <input placeholder='Miles' type='number' step='0.1' name='miles' value={formData.miles} onChange={handleChange}/><br />
+      <form onSubmit={formik.handleSubmit}>
+        <input placeholder='Date (mm-dd-yy)' type='text' name='date' value={formik.values.date} onChange={formik.handleChange}/>
+        <input placeholder='Miles' type='number' step='0.1' name='miles' value={formik.values.miles} onChange={formik.handleChange}/><br />
         <input type='submit' value={editMode ? 'Edit Entry' : 'Add Entry'}/>
       </form>
     </>
