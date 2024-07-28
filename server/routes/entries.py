@@ -17,9 +17,9 @@ class EntriesResource(Resource):
             db.session.commit()
             return entry.to_dict(rules=['-user',]), 201
         except IntegrityError as e:
-            return {'error': e}, 422
+            return {'error': e.orig.args[0]}, 422
         except ValueError as e:
-            return {'error': e}, 422
+            return {'error': str(e)}, 422
     
 class EntryResource(Resource):
     def get(self, id):
@@ -38,9 +38,9 @@ class EntryResource(Resource):
              db.session.commit()
              return entry.to_dict(rules=['-user',]), 200
          except IntegrityError as e:
-             return {'error': e}, 422
+             return {'error': e.orig.args[0]}, 422
          except ValueError as e:
-             return {'error': e}, 422
+             return {'error': str(e)}, 422
 
     def delete(self, id):
         entry = Entry.query.filter(Entry.id == id).first()

@@ -20,9 +20,9 @@ class TripsResource(Resource):
             db.session.add(trip)
             db.session.commit()
             return trip.to_dict(), 201
-        except ValueError as e:
-            return {'error': e}, 422
         except IntegrityError as e:
-            return {'error': e}, 422
+            return {'error': e.orig.args[0]}, 422
+        except ValueError as e:
+            return {'error': str(e)}, 422
 
 api.add_resource(TripsResource, '/api/trips')

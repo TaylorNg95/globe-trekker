@@ -4,8 +4,6 @@ import { UserContext } from '../../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 
 function NavBar() {
-    console.log('NavBar component')
-
     const {loggedIn, logout, user} = useContext(UserContext)
 
     const navigate = useNavigate()
@@ -29,11 +27,9 @@ function NavBar() {
     </>
 
     return (
-        <>
-            <ul>
-                {routes}    
-            </ul>
-        </>
+        <ul>
+            {routes}    
+        </ul>
     )
 }
 
