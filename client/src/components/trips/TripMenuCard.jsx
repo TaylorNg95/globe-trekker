@@ -22,10 +22,11 @@ function TripMenuCard({trip}) {
   }
 
   return (
-    <div onClick={handleClick}>
+    <div>
         <h2>TripMenuCard</h2>
         <p>{trip.name}</p>
         <p>Total Miles: {trip.total_miles}</p>
+        <button onClick={handleClick}>Add Trip</button>
     </div>
   )
 }
