@@ -50,9 +50,9 @@ function Signup() {
     <>
         <h1>Sign Up Form</h1>
         <form onSubmit={formik.handleSubmit}>
-            <label>Name: <input type='text' name='name' value={formik.values.name} onChange={formik.handleChange}/></label><br />
-            <label>Username: <input type='text' name='username' value={formik.values.username} onChange={formik.handleChange}/></label><br />
-            <label>Password: <input type='password' name='password' autoComplete='on' value={formik.values.password} onChange={formik.handleChange}/></label><br />
+            <label>Name: <input type='text' name='name' value={formik.values.name} onChange={formik.handleChange} required/></label><br />
+            <label>Username: <input type='text' name='username' value={formik.values.username} onChange={formik.handleChange} required/></label><br />
+            <label>Password: <input type='password' name='password' autoComplete='on' value={formik.values.password} onChange={formik.handleChange} required/></label><br />
             {error ? <p style={{color: 'red'}}>{error}</p> : null}
             <input type='submit' value='Submit'/>
         </form>

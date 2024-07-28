@@ -18,7 +18,7 @@ class Signup(Resource):
             session['user_id'] = user.id
             return user.to_dict(rules=['trips',]), 201
         except IntegrityError as e:
-            return {'error': e.orig.args[0]}, 422
+            return {'error': 'Username taken'}, 422 
         except ValueError as e:
             return {'error': str(e)}, 422
 

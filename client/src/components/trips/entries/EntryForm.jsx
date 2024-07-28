@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react'
+import {useContext} from 'react'
 import {useFormik} from 'formik'
 import * as yup from 'yup'
 import { UserContext } from '../../../context/UserContext'
@@ -36,8 +36,8 @@ function EntryForm({trip, entry, editMode, setEditMode}) {
   return (
     <>
       <form onSubmit={formik.handleSubmit}>
-        <input placeholder='Date (mm-dd-yy)' type='text' name='date' value={formik.values.date} onChange={formik.handleChange}/>
-        <input placeholder='Miles' type='number' step='0.1' name='miles' value={formik.values.miles} onChange={formik.handleChange}/><br />
+        <input placeholder='Date (mm-dd-yy)' type='text' name='date' value={formik.values.date} onChange={formik.handleChange} required/>
+        <input placeholder='Miles' type='number' min='0' step='0.1' name='miles' value={formik.values.miles} onChange={formik.handleChange} required/><br />
         <input type='submit' value={editMode ? 'Edit Entry' : 'Add Entry'}/>
       </form>
     </>

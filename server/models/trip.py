@@ -31,6 +31,6 @@ class Trip(db.Model, SerializerMixin):
     @validates('total_miles')
     def validate_total_miles(self, key, total_miles):
         if float(total_miles) <= 0:
-            raise ValueError('Total miles must be greater than 0')
+            raise ValueError('Total miles cannot be negative')
         else:
             return total_miles

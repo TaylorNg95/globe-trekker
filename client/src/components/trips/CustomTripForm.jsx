@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react'
+import {useContext} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { TripContext } from '../../context/TripContext'
 import {useFormik} from 'formik'
@@ -36,9 +36,9 @@ function CustomTripForm() {
     <>
       <div>CustomTripForm</div>
       <form onSubmit={formik.handleSubmit}>
-      <label>Name: <input type='text' name='name' value={formik.values.name} onChange={formik.handleChange}/></label><br />
-      <label>Country: <input type='text' name='country' value={formik.values.country} onChange={formik.handleChange}/></label><br />
-      <label>Total Miles: <input type='number' name='total_miles' value={formik.values.total_miles} onChange={formik.handleChange}/></label><br />
+      <label>Name: <input type='text' name='name' value={formik.values.name} onChange={formik.handleChange} required/></label><br />
+      <label>Country: <input type='text' name='country' value={formik.values.country} onChange={formik.handleChange} required/></label><br />
+      <label>Total Miles: <input type='number' name='total_miles' min='0' step='0.1' value={formik.values.total_miles} onChange={formik.handleChange} required/></label><br />
       <input type='submit' value='Add Custom Trip'/>
       </form>
     </>
