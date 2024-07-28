@@ -10,7 +10,6 @@ function UserProvider({children}) {
 
     useEffect(() => {
         async function checkUser() {
-            console.log('userContext useEffect')
             const response = await fetch('/api/check_session')
             if (response.status == 200) {
                 const user = await response.json()
@@ -30,6 +29,7 @@ function UserProvider({children}) {
     function logout(){
         setLoggedIn(false)
         setUser(null)
+        setEntries(null)
     }
 
     async function addEntry(entry) {
@@ -46,7 +46,7 @@ function UserProvider({children}) {
             setEntries([...entries, newEntry])
         } else {
             const error = await response.json()
-            console.log(error)
+            console.log(error) // TBD
         }
     }
 
@@ -68,7 +68,7 @@ function UserProvider({children}) {
             }))
         } else {
             const error = await response.json()
-            console.log(error)
+            console.log(error) // TBD
         }
     }
 
@@ -76,13 +76,17 @@ function UserProvider({children}) {
         await fetch(`/api/entries/${id}`, {
           method: 'DELETE'
         })
-        setEntries(entries.filter(ent => ent.id != id))
+        if (response.status == 204){
+            setEntries(entries.filter(ent => ent.id != id))
+        } else {
+            const error = await response.json()
+            console.log(error) // TBD
+        }
       }
     
     if (loading == true){
         return <h1>Loading...</h1>
     } else {
-        console.log('UserContext component')
         return <UserContext.Provider value={{loggedIn, user, login, logout, entries, setEntries, addEntry, editEntry, deleteEntry}}>{children}</UserContext.Provider>
     }
 }

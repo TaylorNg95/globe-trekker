@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 function NavBar() {
     console.log('NavBar component')
 
-    const {loggedIn, logout} = useContext(UserContext)
+    const {loggedIn, logout, user} = useContext(UserContext)
 
     const navigate = useNavigate()
 
@@ -19,6 +19,7 @@ function NavBar() {
     }
 
     const routes = loggedIn ? <>
+        <p>Welcome, {user.name}!</p>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/my-trips'>My Trips</Link></li>
         <li><Link to='#' onClick={handleLogout}>Logout</Link></li>

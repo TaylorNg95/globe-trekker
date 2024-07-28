@@ -9,7 +9,6 @@ function EntryItem({entry, trip}) {
 
   function handleEdit(id) {
     setEditMode(!editMode)
-    console.log('handling edit')
   }
 
   return (

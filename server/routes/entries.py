@@ -5,10 +5,6 @@ from models.entry import Entry
 from sqlalchemy.exc import IntegrityError
 
 class EntriesResource(Resource):
-    def get(self):
-        entries = Entry.query.all()
-        return [entry.to_dict(rules=['-user',]) for entry in entries]
-    
     def post(self):
         data = request.get_json()
         date = data.get('date')
@@ -20,8 +16,10 @@ class EntriesResource(Resource):
             db.session.add(entry)
             db.session.commit()
             return entry.to_dict(rules=['-user',]), 201
-        except:
-            return {'error': 'Invalid input'}, 422
+        except IntegrityError as e:
+            return {'error': e}, 422
+        except ValueError as e:
+            return {'error': e}, 422
     
 class EntryResource(Resource):
     def get(self, id):
@@ -39,8 +37,10 @@ class EntryResource(Resource):
              db.session.add(entry)
              db.session.commit()
              return entry.to_dict(rules=['-user',]), 200
-         except:
-             return {'error': 'Invalid input'}, 422
+         except IntegrityError as e:
+             return {'error': e}, 422
+         except ValueError as e:
+             return {'error': e}, 422
 
     def delete(self, id):
         entry = Entry.query.filter(Entry.id == id).first()

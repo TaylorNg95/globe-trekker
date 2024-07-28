@@ -5,9 +5,9 @@ from sqlalchemy.schema import MetaData
 from flask_bcrypt import Bcrypt
 from flask_restful import Api
 from flask_cors import CORS
-from dotenv import load_dotenv # load environment variables
+from dotenv import load_dotenv
 
-import os # access environment variables
+import os
 
 load_dotenv()
 

@@ -16,11 +16,11 @@ class Signup(Resource):
             db.session.add(user)
             db.session.commit()
             session['user_id'] = user.id
-            return user.to_dict(), 201
-        except ValueError:
-            return {'error': 'Name, username and password required'}, 422
-        except IntegrityError:
-            return {'error': 'Username must be unique'}, 422
+            return user.to_dict(rules=['trips',]), 201
+        except IntegrityError as e:
+            return {'error': e}, 422
+        except ValueError as e:
+            return {'error': e}, 422
 
 class Login(Resource):
     def post(self):

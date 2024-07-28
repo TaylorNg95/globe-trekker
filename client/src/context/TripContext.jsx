@@ -11,7 +11,6 @@ function TripProvider({children}) {
     
     useEffect(() => {
         async function getTrips() {
-            console.log('TripContext useEffect')
             const response = await fetch('/api/trips')
             const trips = await response.json()
             setTrips(trips)
@@ -38,6 +37,8 @@ function TripProvider({children}) {
                 user_id: user.id,
                 trip_id: newTrip.id
             })
+        // When a new custom trip is created, we must initialize a 0-miles entry (this will never be shown
+        // since we only show entries > 0 but is necessary to ensure the trip shows up on the My-Trips page)
         } else {
             const error = await response.json()
             console.log(error)
@@ -47,7 +48,6 @@ function TripProvider({children}) {
     if (loading == true){
         return <h1>Loading...</h1>
     } else {
-        console.log('TripContext component')
         return <TripContext.Provider value={{trips, addTrip}}>{children}</TripContext.Provider>
     }
 }
