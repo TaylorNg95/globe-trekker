@@ -1,10 +1,11 @@
-import {useContext} from 'react'
+import {useContext, useState} from 'react'
 import { UserContext } from '../../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
 function Login() {
+  const [error, setError] = useState('')
 
   const {login} = useContext(UserContext)
   const navigate = useNavigate()
@@ -37,7 +38,7 @@ function Login() {
         navigate('/')
       } else {
         const error = await response.json()
-        console.log(error)
+        setError(error.error)
       }
     }
   })
@@ -48,6 +49,7 @@ function Login() {
         <form onSubmit={formik.handleSubmit}>
             <label>Username: <input type='text' name='username' value={formik.values.username} onChange={formik.handleChange}/></label><br />
             <label>Password: <input type='password' name='password' autoComplete='on' value={formik.values.password} onChange={formik.handleChange}/></label><br />
+            {error ? <p style={{color: 'red'}}>{error}</p> : null}
             <input type='submit' value='Submit'/>
         </form>
     </>
