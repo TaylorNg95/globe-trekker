@@ -1,8 +1,11 @@
+import { Container, Typography } from '@mui/material'
 import React from 'react'
 
 function Home() {
-    return (            
-        <h1>Home: Walking the World</h1>
+    return (   
+        <Container sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh'}}>
+            <Typography component='h1' variant='h3' sx={{textAlign: 'center'}}>Home: Walking the World</Typography>
+        </Container>
     )
 }
 
