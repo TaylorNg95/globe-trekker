@@ -17,7 +17,9 @@ function CustomTripForm() {
   }
 
   const validationSchema = yup.object({
-
+    name: yup.string().required(),
+    country: yup.string().required(),
+    total_miles: yup.number().required()
   })
 
   const formik = useFormik({

@@ -13,11 +13,12 @@ function TripMenuCard({trip}) {
     user_id: user.id,
     trip_id: trip.id
   }
-  // Date is held as a dummy string, as no '0' date entries will be shown
+  // Date is held as a dummy string, as no '0' mile entries will be shown. Adding a new trip means also
+  // adding a '0' mile entry to ensure the trips is shown on the My-Trips page.
 
   function handleClick(){
     addEntry(newTripEntry)
-    navigate('/my-trips') // *** TBD: needs to update with the user entries
+    navigate('/my-trips')
   }
 
   return (

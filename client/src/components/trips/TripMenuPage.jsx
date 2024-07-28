@@ -7,13 +7,13 @@ import { UserContext } from '../../context/UserContext'
 function TripMenuPage() {
   const {trips} = useContext(TripContext)
   const {entries} = useContext(UserContext)
+  const tripIDs = entries.map(entry => entry.trip_id)
+  const availableTrips = trips.filter(trip => trip.custom == 0 && !tripIDs.includes(trip.id))
+  // This page shows all available trips to the user. We must therefore exclude custom trips (because they
+  // either belong to another user or the user has started a custom trip. We must also exclude any trips
+  // where we have entries already, since it means we started those trips. This will overlap with the
+  // custom trips but will also include any non-custom trips that the user has started.
 
-  const entriesIDs = entries.map(entry => entry.trip_id)
-  const availableTrips = trips.filter(trip => trip.custom == 0 && !entriesIDs.includes(trip.id))
-  // Exclude custom trips (because they either belong to another user or we've
-  // created it and therefore it is ongoing).
-
-  console.log('Trip Menu components')
   return (
     <>
       <h2>TripMenuPage</h2>

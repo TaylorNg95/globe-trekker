@@ -14,10 +14,9 @@ function EntriesPage() {
   const {entries} = useContext(UserContext)
   const tripEntries = entries.filter(entry => entry.trip_id == trip.id && entry.miles != 0)
   const milesAchieved = tripEntries.reduce((accumulator, entry) => {
-    return Math.round(accumulator + entry.miles)
+    return Math.round(accumulator + entry.miles) // TBD - not DRY with MyTripsCard
   }, 0)
 
-  console.log('My-Trips/entries components')
   return (
     <>
       <h1>{trip.name}</h1>

@@ -8,12 +8,10 @@ function MyTripsPage() {
 
   const {trips} = useContext(TripContext)
   const {entries} = useContext(UserContext)
-  const tripIDs = entries.map(entry => entry.trip_id)
-  const uniqueTripIDs = [...new Set(tripIDs)]
-  const uniqueTrips = uniqueTripIDs.map(id => trips.find(trip => trip.id == id))
-  // extracts unique trip IDs based on user entries 
+  const tripIDs = entries.map(entry => entry.trip_id) // gets tripIDs of all user entries
+  const uniqueTripIDs = [...new Set(tripIDs)] // keeps only user's unique trip IDs
+  const uniqueTrips = uniqueTripIDs.map(id => trips.find(trip => trip.id == id)) // gets corresponding trips
 
-  console.log('My-Trips components')
   return (
     <>
       <h1>User Trips Page</h1>

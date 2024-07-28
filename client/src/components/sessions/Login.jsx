@@ -42,7 +42,6 @@ function Login() {
     }
   })
 
-  console.log('Login component')
   return (
     <>
         <h1>Login Form</h1>

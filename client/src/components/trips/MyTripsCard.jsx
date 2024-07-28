@@ -8,10 +8,10 @@ function MyTripsCard({trip}) {
   const navigate = useNavigate()
 
   const {entries} = useContext(UserContext)
-  const tripEntries = entries.filter(entry => entry.trip_id == trip.id)
+  const tripEntries = entries.filter(entry => entry.trip_id == trip.id) // gets user entries of one trip
   const milesAchieved = tripEntries.reduce((accumulator, entry) => {
     return Math.round(accumulator + entry.miles)
-  }, 0)
+  }, 0) // calculates total miles entered - to be used in progress bar
 
   function handleClick(){
     navigate(`/my-trips/${trip.id}`)
