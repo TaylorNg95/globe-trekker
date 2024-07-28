@@ -11,6 +11,7 @@ function TripProvider({children}) {
     
     useEffect(() => {
         async function getTrips() {
+            console.log('TripContext useEffect')
             const response = await fetch('/api/trips')
             const trips = await response.json()
             setTrips(trips)
@@ -18,11 +19,6 @@ function TripProvider({children}) {
         }
         getTrips()
     }, [])
-
-    const newEntry = {
-
-    }
-    // When a new trip is created, a default entry must be created at the same time
 
     async function addTrip(trip) {
         const response = await fetch('/api/trips', {
@@ -47,10 +43,11 @@ function TripProvider({children}) {
             console.log(error)
         }
     }
-
+    
     if (loading == true){
         return <h1>Loading...</h1>
     } else {
+        console.log('TripContext component')
         return <TripContext.Provider value={{trips, addTrip}}>{children}</TripContext.Provider>
     }
 }

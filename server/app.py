@@ -3,7 +3,6 @@ from models.user import User
 from models.trip import Trip
 from models.entry import Entry
 from routes.sessions import *
-from routes.users import *
 from routes.trips import *
 from routes.entries import *
 

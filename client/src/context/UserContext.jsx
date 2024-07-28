@@ -10,6 +10,7 @@ function UserProvider({children}) {
 
     useEffect(() => {
         async function checkUser() {
+            console.log('userContext useEffect')
             const response = await fetch('/api/check_session')
             if (response.status == 200) {
                 const user = await response.json()
@@ -78,8 +79,10 @@ function UserProvider({children}) {
         setEntries(entries.filter(ent => ent.id != id))
       }
     
-    {
-        console.log('rendering user context provider')
+    if (loading == true){
+        return <h1>Loading...</h1>
+    } else {
+        console.log('UserContext component')
         return <UserContext.Provider value={{loggedIn, user, login, logout, entries, setEntries, addEntry, editEntry, deleteEntry}}>{children}</UserContext.Provider>
     }
 }

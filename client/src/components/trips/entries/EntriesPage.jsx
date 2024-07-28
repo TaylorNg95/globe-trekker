@@ -17,6 +17,7 @@ function EntriesPage() {
     return Math.round(accumulator + entry.miles)
   }, 0)
 
+  console.log('My-Trips/entries components')
   return (
     <>
       <h1>{trip.name}</h1>

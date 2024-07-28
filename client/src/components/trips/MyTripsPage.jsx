@@ -13,6 +13,7 @@ function MyTripsPage() {
   const uniqueTrips = uniqueTripIDs.map(id => trips.find(trip => trip.id == id))
   // extracts unique trip IDs based on user entries 
 
+  console.log('My-Trips components')
   return (
     <>
       <h1>User Trips Page</h1>
