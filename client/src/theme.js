@@ -9,7 +9,7 @@ const theme = createTheme({
       main: '#FC6A03',
     },
     background: {
-        default: '#B6E1F6',
+        default: '#CDEBF9',
     }
   },
 });
