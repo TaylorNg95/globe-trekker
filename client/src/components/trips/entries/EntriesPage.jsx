@@ -6,6 +6,9 @@ import EntryItem from './EntryItem'
 import EntryForm from './EntryForm'
 import ProgressBar from '../ProgressBar'
 
+// MATERIAL UI
+import { Container, Typography } from '@mui/material'
+
 function EntriesPage() {
   const {trips} = useContext(TripContext)
   const {id} = useParams()
@@ -26,11 +29,13 @@ function EntriesPage() {
     return null
   } else return (
     <>
-      <h1>{trip.name}</h1>
-      <h2>{trip.total_miles}</h2>
+      <Container sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh'}}>
+        <Typography component="h1" variant='h3' sx={{mt: 3}}>{trip.name}</Typography>
+        <Typography component="p" variant='h4' sx={{mt: 2, mb: 2}}>Total Miles: {trip.total_miles}</Typography>
+        {tripEntriesOverZero.map(entry => <EntryItem key={entry.id} entry={entry} trip={trip}/>)}
+      </Container>
       <ProgressBar progress={milesAchieved} total={trip.total_miles}/>
       <div>
-        {tripEntriesOverZero.map(entry => <EntryItem key={entry.id} entry={entry} trip={trip}/>)}
         <EntryForm trip={trip} editMode={false}/>
       </div>
     </>

@@ -19,7 +19,7 @@ function MyTripsPage() {
     <Container sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh'}}>
       <Typography component="h1" variant='h3' sx={{mt: 3}}>My Trips</Typography>
       <Typography component="h2" variant="h5" sx={{fontStyle: 'italic', mt: 2, mb: 2}}>
-        {uniqueTrips.length != 0 ? 'Here are your ongoing trips...keep up the great work!' : 'Get started with your first trip!'}
+        {uniqueTrips.length != 0 ? 'Here are your ongoing trips, keep up the great work!' : 'Get started with your first trip!'}
       </Typography>
       <Grid container spacing={3}>
         {uniqueTrips.map(trip => <MyTripsCard key={trip.id} trip={trip}/>)}
