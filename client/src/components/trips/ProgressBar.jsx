@@ -12,9 +12,9 @@ function ProgressBar({trip, total}) {
   }, 0)
 
   let percentComplete = Math.round(milesAchieved / total * 100)
-  /* if (percentComplete > 100){
+  if (percentComplete > 100){
     percentComplete = 100
-  } */
+  }
   // Account for if user inputs and entry that puts them over 100%
 
   return (

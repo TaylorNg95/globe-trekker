@@ -28,10 +28,11 @@ function EntriesPage() {
     <>
       <Container sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh'}}>
         <Typography component="h1" variant='h3' sx={{mt: 3}}>{trip.name}</Typography>
-        <Typography component="p" variant='h4' sx={{mt: 2, mb: 2}}>Distance: {trip.total_miles} miles</Typography>
+        <Typography component="p" variant='h4' sx={{mt: 2, mb: 2}}>Distance Goal: {trip.total_miles} miles</Typography>
         <Box sx={{width: '90%', mt: 2}}>
           <ProgressBar trip={trip} total={trip.total_miles}/>
         </Box>
+        <Typography component="p" variant='h4' sx={{mb: 2}}>My Entries:</Typography>
         {tripEntriesOverZero.map(entry => <EntryItem key={entry.id} entry={entry} trip={trip}/>)}
         <EntryForm trip={trip} editMode={false}/>
       </Container>
