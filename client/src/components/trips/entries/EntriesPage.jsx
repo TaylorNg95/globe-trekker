@@ -31,7 +31,7 @@ function EntriesPage() {
     <>
       <Container sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh'}}>
         <Typography component="h1" variant='h3' sx={{mt: 3}}>{trip.name}</Typography>
-        <Typography component="p" variant='h4' sx={{mt: 2, mb: 2}}>Total Miles: {trip.total_miles}</Typography>
+        <Typography component="p" variant='h4' sx={{mt: 2, mb: 2}}>Distance: {trip.total_miles} miles</Typography>
         <Box sx={{width: '90%', mt: 2}}>
           <ProgressBar progress={milesAchieved} total={trip.total_miles}/>
         </Box>

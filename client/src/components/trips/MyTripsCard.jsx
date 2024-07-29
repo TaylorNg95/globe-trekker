@@ -4,7 +4,7 @@ import { UserContext } from '../../context/UserContext'
 import ProgressBar from './ProgressBar'
 
 // MATERIAL UI
-import { Grid, Card, CardActionArea, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material'
+import { Grid, Card, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material'
 
 function MyTripsCard({trip}) {
 
@@ -26,7 +26,8 @@ function MyTripsCard({trip}) {
           />
           <CardContent sx={{paddingBottom: 0}}>
             <Typography variant="h4" component="p">{trip.name}</Typography>
-            <Typography variant="h6" component="p">Total Miles: {trip.total_miles}</Typography>
+            <Typography variant="h6" component="p">Location: {trip.location}</Typography>
+            <Typography variant="h6" component="p">Distance: {trip.total_miles} miles</Typography>
             <ProgressBar progress={milesAchieved} total={trip.total_miles}/>
           </CardContent>
         <CardActions sx={{paddingLeft: 2, paddingBottom: 2}}>

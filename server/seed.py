@@ -24,7 +24,11 @@ with app.app_context():
     trip3 = Trip(name='Nile River', location='Egypt', total_miles=4130, image_path='/images/nile_river.jpg')
     trip4 = Trip(name='Macchu Pichu', location='Peru', total_miles=26, image_path='/images/macchu_picchu.jpg')
     trip5 = Trip(name='Great Barrier Reef', location='Australia', total_miles=1430, image_path='/images/gb_reef.jpg')
-    db.session.add_all([trip1, trip2, trip3, trip5])
+    trip6 = Trip(name='Grand Canyon', location='United States', total_miles=277, image_path='/images/grand_canyon.jpg')
+    trip7 = Trip(name='Milford Track', location='New Zealand', total_miles=33, image_path='/images/milford_track.jpg')
+    trip8 = Trip(name='Hadrian\s Wall Path', location='England', total_miles=84, image_path='/images/hadrian.jpg')
+    trip9 = Trip(name='Tour du Mont Blanc', location='Europe', total_miles=105, image_path='/images/mont_blanc.jpg')
+    db.session.add_all([trip1, trip2, trip3, trip4, trip5, trip6, trip7, trip8, trip9])
     db.session.commit()
 
     entry1 = Entry(date='07-02-24', miles=4.5, user_id=1, trip_id=2)

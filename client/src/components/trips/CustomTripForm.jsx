@@ -14,14 +14,14 @@ function CustomTripForm() {
 
   const initialValues = {
     name: '',
-    country: '',
+    location: '',
     total_miles: '',
     custom: 1
   }
 
   const validationSchema = yup.object({
     name: yup.string().required(),
-    country: yup.string().required(),
+    location: yup.string().required(),
     total_miles: yup.number().required()
   })
 
@@ -40,7 +40,7 @@ function CustomTripForm() {
       <Typography component='p' variant='h5'>Add Custom Trip</Typography>
       <Box component='form' onSubmit={formik.handleSubmit}>
         <TextField sx={{margin: 1}} label="Name" type="text" name="name" variant="outlined" value={formik.values.name} onChange={formik.handleChange} required/>
-        <TextField sx={{margin: 1}} label="Country" type="text" name="country" variant="outlined" value={formik.values.country} onChange={formik.handleChange} required/>
+        <TextField sx={{margin: 1}} label="Location" type="text" name="location" variant="outlined" value={formik.values.location} onChange={formik.handleChange} required/>
         <TextField sx={{margin: 1}} label="Total Miles" type="number" name="total_miles" variant="outlined" inputProps={{step: '0.1', min: '0'}} value={formik.values.total_miles} onChange={formik.handleChange} required/><br />
         <Button type="submit" variant="contained" sx={{margin: 1}}>Add</Button>
       </Box>
