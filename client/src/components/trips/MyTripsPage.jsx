@@ -5,7 +5,7 @@ import MyTripsCard from './MyTripsCard'
 import { TripContext } from '../../context/TripContext'
 
 // MATERIAL UI
-import { Container, Typography, Grid } from '@mui/material'
+import { Container, Typography, Grid, Button } from '@mui/material'
 
 function MyTripsPage() {
 
@@ -16,13 +16,13 @@ function MyTripsPage() {
   const uniqueTrips = uniqueTripIDs.map(id => trips.find(trip => trip.id == id)) // gets corresponding trips
 
   return (
-    <Container sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh'}}>
+    <Container sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh', mb: 2}}>
       <Typography component="h1" variant='h3' sx={{mt: 3}}>My Trips</Typography>
-      <h2>Here are your ongoing trips!</h2>
+      <Typography component="h2" variant="h5" sx={{fontStyle: 'italic', mt: 2}}>Here are your ongoing trips...keep up the great work!</Typography>
       <Grid container spacing={2}>
         {uniqueTrips.map(trip => <MyTripsCard key={trip.id} trip={trip}/>)}
       </Grid>
-      <Link to='/trip-menu'>Start New Trip</Link>
+      <Button component={Link} to='/trip-menu' variant='contained'>Start New Trip</Button>
     </Container>
   )
 }
