@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
+// MATERIAL UI
+import { Container, Typography, Box, TextField, Button } from '@mui/material'
+
 function Signup() {
   const [error, setError] = useState('')
 
@@ -47,16 +50,16 @@ function Signup() {
   })
 
   return (
-    <>
-        <h1>Sign Up Form</h1>
-        <form onSubmit={formik.handleSubmit}>
-            <label>Name: <input type='text' name='name' value={formik.values.name} onChange={formik.handleChange} required/></label><br />
-            <label>Username: <input type='text' name='username' value={formik.values.username} onChange={formik.handleChange} required/></label><br />
-            <label>Password: <input type='password' name='password' autoComplete='on' value={formik.values.password} onChange={formik.handleChange} required/></label><br />
+      <Container sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '80vh'}}>
+        <Typography component='h1' variant='h3' sx={{fontWeight: 'bold'}}>Sign Up</Typography>
+        <Box component='form' onSubmit={formik.handleSubmit}>
+            <TextField sx={{mt: 2}} label="Name" name="name" variant="outlined" value={formik.values.name} onChange={formik.handleChange} required/><br />
+            <TextField sx={{mt: 1}} label="Username" name="username" variant="outlined" value={formik.values.username} onChange={formik.handleChange} required/><br />
+            <TextField sx={{mt: 1, mb: 1}} label="Password" type="password" name="password" variant="outlined" value={formik.values.password} autoComplete="on" onChange={formik.handleChange} required/><br />
             {error ? <p style={{color: 'red'}}>{error}</p> : null}
-            <input type='submit' value='Submit'/>
-        </form>
-    </>
+            <Button type="submit" variant="contained">Submit</Button>
+        </Box>
+    </Container>
   )
 }
 

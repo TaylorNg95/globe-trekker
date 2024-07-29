@@ -47,11 +47,11 @@ function Login() {
   })
 
   return (
-    <Container sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '60vh'}}>
+    <Container sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '80vh'}}>
         <Typography component='h1' variant='h3' sx={{fontWeight: 'bold'}}>Log In</Typography>
         <Box component='form' onSubmit={formik.handleSubmit}>
             <TextField sx={{mt: 2}} label="Username" name="username" variant="outlined" value={formik.values.username} onChange={formik.handleChange} required/><br />
-            <TextField sx={{mt: 1, mb: 1}} label="Password" type="password" name="password" variant="outlined" value={formik.values.password} onChange={formik.handleChange} required/><br />
+            <TextField sx={{mt: 1, mb: 1}} label="Password" type="password" name="password" variant="outlined" value={formik.values.password} autoComplete="on" onChange={formik.handleChange} required/><br />
             {error ? <p style={{color: 'red'}}>{error}</p> : null}
             <Button type="submit" variant="contained">Submit</Button>
         </Box>
