@@ -4,6 +4,9 @@ import TripMenuCard from './TripMenuCard'
 import CustomTripForm from './CustomTripForm'
 import { UserContext } from '../../context/UserContext'
 
+// Material UI
+import { Container, Typography, Grid } from '@mui/material'
+
 function TripMenuPage() {
   const {trips} = useContext(TripContext)
   const {entries} = useContext(UserContext)
@@ -15,13 +18,16 @@ function TripMenuPage() {
   // custom trips but will also include any non-custom trips that the user has started.
 
   return (
-    <>
-      <h2>TripMenuPage</h2>
-      <div>
+    <Container sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh'}}>
+      <Typography component="h1" variant="h3" sx={{mt: 3}}>Trip Menu</Typography>
+      <Typography component="h2" variant="h5" sx={{fontStyle: 'italic', mt: 1}}>Select a New Trip to Start, or Create Your Own!</Typography>
+      <Grid container spacing={2}>
         {availableTrips.map(trip => <TripMenuCard key={trip.id} trip={trip}/>)}
-        <CustomTripForm />
-      </div>
-    </>
+        <Grid item xs={12}>
+          <CustomTripForm />
+        </Grid>
+      </Grid>
+    </Container>
   )
 }
 

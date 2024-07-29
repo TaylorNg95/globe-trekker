@@ -17,7 +17,7 @@ function MyTripsPage() {
 
   return (
     <Container sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh'}}>
-      <Typography component="h1" variant='h3' sx={{mt: 3, }}>My Trips</Typography>
+      <Typography component="h1" variant='h3' sx={{mt: 3}}>My Trips</Typography>
       <h2>Here are your ongoing trips!</h2>
       <Grid container spacing={2}>
         {uniqueTrips.map(trip => <MyTripsCard key={trip.id} trip={trip}/>)}

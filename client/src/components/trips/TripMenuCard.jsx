@@ -2,6 +2,9 @@ import {useContext} from 'react'
 import { UserContext } from '../../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 
+// Material UI
+import { Grid } from '@mui/material'
+
 function TripMenuCard({trip}) {
   const {addEntry, user} = useContext(UserContext)
 
@@ -22,12 +25,12 @@ function TripMenuCard({trip}) {
   }
 
   return (
-    <div>
+    <Grid item xs={6} md={4}>
         <h2>TripMenuCard</h2>
         <p>{trip.name}</p>
         <p>Total Miles: {trip.total_miles}</p>
         <button onClick={handleClick}>Add Trip</button>
-    </div>
+    </Grid>
   )
 }
 
