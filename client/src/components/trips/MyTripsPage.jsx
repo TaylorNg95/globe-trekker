@@ -16,13 +16,13 @@ function MyTripsPage() {
   const uniqueTrips = uniqueTripIDs.map(id => trips.find(trip => trip.id == id)) // gets corresponding trips
 
   return (
-    <Container sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh', mb: 2}}>
+    <Container sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh'}}>
       <Typography component="h1" variant='h3' sx={{mt: 3}}>My Trips</Typography>
       <Typography component="h2" variant="h5" sx={{fontStyle: 'italic', mt: 2, mb: 2}}>Here are your ongoing trips...keep up the great work!</Typography>
-      <Grid container spacing={3} sx={{mb: 2}}>
+      <Grid container spacing={3}>
         {uniqueTrips.map(trip => <MyTripsCard key={trip.id} trip={trip}/>)}
       </Grid>
-      <Button component={Link} to='/trip-menu' variant='contained'>Start New Trip</Button>
+      <Button component={Link} to='/trip-menu' variant='contained' sx={{margin: 3}}>Start New Trip</Button>
     </Container>
   )
 }

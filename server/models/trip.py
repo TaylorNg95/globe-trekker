@@ -11,6 +11,7 @@ class Trip(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable=False)
     country = db.Column(db.String, nullable=False)
     total_miles = db.Column(db.Integer, nullable=False)
+    image_path = db.Column(db.String)
     custom = db.Column(db.Boolean, default=False)
 
     entries = db.relationship('Entry', back_populates='trip', cascade='all, delete-orphan')

@@ -21,7 +21,7 @@ function MyTripsCard({trip}) {
           <CardMedia
             component="img"
             height="140"
-            image="https://www.muchbetteradventures.com/magazine/content/images/2021/06/Rock-steps-along-the-Appalachian-Trail-in-Stokes-State-Forest-New-Jersey---stock-photo-2.jpg"
+            image={trip.image_path ? trip.image_path : 'public/images/default.jpg'}
             alt={trip.name}
           />
           <CardContent sx={{paddingBottom: 0}}>
