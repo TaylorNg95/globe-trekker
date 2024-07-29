@@ -2,7 +2,7 @@ import {useContext} from 'react'
 import { UserContext } from '../../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 
-// Material UI
+// MATERIAL UI
 import { Grid } from '@mui/material'
 
 function TripMenuCard({trip}) {

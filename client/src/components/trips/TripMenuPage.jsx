@@ -4,7 +4,7 @@ import TripMenuCard from './TripMenuCard'
 import CustomTripForm from './CustomTripForm'
 import { UserContext } from '../../context/UserContext'
 
-// Material UI
+// MATERIAL UI
 import { Container, Typography, Grid } from '@mui/material'
 
 function TripMenuPage() {

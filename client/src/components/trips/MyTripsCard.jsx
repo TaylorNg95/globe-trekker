@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import ProgressBar from './ProgressBar'
 
-// Material UI
+// MATERIAL UI
 import { Grid, Card, CardActionArea, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material'
 
 function MyTripsCard({trip}) {
@@ -24,13 +24,13 @@ function MyTripsCard({trip}) {
             image="https://www.muchbetteradventures.com/magazine/content/images/2021/06/Rock-steps-along-the-Appalachian-Trail-in-Stokes-State-Forest-New-Jersey---stock-photo-2.jpg"
             alt={trip.name}
           />
-          <CardContent>
+          <CardContent sx={{paddingBottom: 0}}>
             <Typography variant="h4" component="p">{trip.name}</Typography>
             <Typography variant="h6" component="p">Total Miles: {trip.total_miles}</Typography>
             <ProgressBar progress={milesAchieved} total={trip.total_miles}/>
           </CardContent>
         </CardActionArea>
-        <CardActions sx={{padding: 2}}>
+        <CardActions sx={{paddingLeft: 2, paddingBottom: 2}}>
           <Button component={Link} to={`/my-trips/${trip.id}`} variant="contained">View Entries</Button>
         </CardActions>
       </Card>
