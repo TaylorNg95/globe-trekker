@@ -9,9 +9,12 @@ const theme = createTheme({
       main: '#FC6A03',
     },
     background: {
-        default: '#CDEBF9',
+        default: '#FED5A4',
     }
   },
+  typography: {
+    fontFamily: 'Patrick Hand, Roboto, Arial'
+  }
 });
 
 export default theme;
