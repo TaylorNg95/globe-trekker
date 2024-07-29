@@ -4,6 +4,9 @@ import { TripContext } from '../../context/TripContext'
 import {useFormik} from 'formik'
 import * as yup from 'yup'
 
+// MATERIAL UI
+import { Typography, Box, TextField, Button } from '@mui/material'
+
 function CustomTripForm() {
   const {addTrip} = useContext(TripContext)
 
@@ -34,13 +37,13 @@ function CustomTripForm() {
 
   return (
     <>
-      <div>CustomTripForm</div>
-      <form onSubmit={formik.handleSubmit}>
-      <label>Name: <input type='text' name='name' value={formik.values.name} onChange={formik.handleChange} required/></label><br />
-      <label>Country: <input type='text' name='country' value={formik.values.country} onChange={formik.handleChange} required/></label><br />
-      <label>Total Miles: <input type='number' name='total_miles' min='0' step='0.1' value={formik.values.total_miles} onChange={formik.handleChange} required/></label><br />
-      <input type='submit' value='Add Custom Trip'/>
-      </form>
+      <Typography component='p' variant='h5'>Add Custom Trip</Typography>
+      <Box component='form' onSubmit={formik.handleSubmit}>
+        <TextField sx={{mr: 1, ml: 1, mt: 1}} label="Name" name="name" variant="outlined" value={formik.values.name} onChange={formik.handleChange} required/>
+        <TextField sx={{mr: 1, ml: 1, mt: 1}} label="Country" name="country" variant="outlined" value={formik.values.country} onChange={formik.handleChange} required/>
+        <TextField sx={{mr: 1, ml: 1, mt: 1}} label="Total Miles" name="total_miles" variant="outlined" min='0' step='0.1' value={formik.values.total_miles} onChange={formik.handleChange} required/><br />
+        <Button type="submit" variant="contained" sx={{margin: 1}}>Add</Button>
+      </Box>
     </>
   )
 }
