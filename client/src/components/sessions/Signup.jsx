@@ -51,7 +51,7 @@ function Signup() {
 
   return (
       <Container sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '80vh'}}>
-        <Typography component='h1' variant='h3' sx={{fontWeight: 'bold'}}>Sign Up</Typography>
+        <Typography component='h1' variant='h3'>Sign Up</Typography>
         <Box component='form' onSubmit={formik.handleSubmit}>
             <TextField sx={{mt: 2}} label="Name" name="name" variant="outlined" value={formik.values.name} onChange={formik.handleChange} required/><br />
             <TextField sx={{mt: 1}} label="Username" name="username" variant="outlined" value={formik.values.username} onChange={formik.handleChange} required/><br />

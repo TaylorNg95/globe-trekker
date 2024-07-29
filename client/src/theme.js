@@ -13,7 +13,19 @@ const theme = createTheme({
     }
   },
   typography: {
-    fontFamily: 'Patrick Hand, Roboto, Arial'
+    fontFamily: 'Patrick Hand, Roboto, Arial',
+    h1: {
+      fontWeight: 'bold'
+    },
+    h2: {
+      fontWeight: 'bold'
+    },
+    h3: {
+      fontWeight: 'bold'
+    },
+    h4: {
+      fontWeight: 'bold'
+    }
   }
 });
 
