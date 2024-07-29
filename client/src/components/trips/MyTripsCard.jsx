@@ -20,7 +20,7 @@ function MyTripsCard({trip}) {
           <CardMedia
             component="img"
             height="140"
-            image={trip.image_path ? trip.image_path : 'public/images/default.jpg'}
+            image={trip.image_path ? trip.image_path : '/images/default.jpg'}
             alt={trip.name}
             sx={{paddingLeft: 2, paddingRight: 2, paddingTop: 2}}
           />

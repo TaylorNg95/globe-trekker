@@ -39,9 +39,9 @@ function CustomTripForm() {
     <>
       <Typography component='p' variant='h5'>Add Custom Trip</Typography>
       <Box component='form' onSubmit={formik.handleSubmit}>
-        <TextField sx={{mr: 1, ml: 1, mt: 1}} label="Name" name="name" variant="outlined" value={formik.values.name} onChange={formik.handleChange} required/>
-        <TextField sx={{mr: 1, ml: 1, mt: 1}} label="Country" name="country" variant="outlined" value={formik.values.country} onChange={formik.handleChange} required/>
-        <TextField sx={{mr: 1, ml: 1, mt: 1}} label="Total Miles" name="total_miles" variant="outlined" min='0' step='0.1' value={formik.values.total_miles} onChange={formik.handleChange} required/><br />
+        <TextField sx={{margin: 1}} label="Name" type="text" name="name" variant="outlined" value={formik.values.name} onChange={formik.handleChange} required/>
+        <TextField sx={{margin: 1}} label="Country" type="text" name="country" variant="outlined" value={formik.values.country} onChange={formik.handleChange} required/>
+        <TextField sx={{margin: 1}} label="Total Miles" type="number" name="total_miles" variant="outlined" inputProps={{step: '0.1', min: '0'}} value={formik.values.total_miles} onChange={formik.handleChange} required/><br />
         <Button type="submit" variant="contained" sx={{margin: 1}}>Add</Button>
       </Box>
     </>
