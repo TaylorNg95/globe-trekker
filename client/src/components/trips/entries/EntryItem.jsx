@@ -14,8 +14,8 @@ function EntryItem({entry, trip}) {
     <Box>
       <Typography component='p' variant='h6'>
         {entry.date} || {entry.miles} mile{entry.miles == 1.0 ? '' : 's'}  
-        <Button variant='contained' sx={{padding: 0, ml: 1}} onClick={() => setEditMode(!editMode)}>Edit</Button>
-        <Button variant='contained' sx={{padding: 0, ml: 1}} onClick={() => deleteEntry(entry.id)}>Delete</Button>
+        <Button variant='outlined' sx={{padding: 0, ml: 1, border: 'solid 1px', color: '#000000'}} onClick={() => setEditMode(!editMode)}>Edit</Button>
+        <Button variant='outlined' sx={{padding: 0, ml: 1, border: 'solid 1px', color: '#000000'}} onClick={() => deleteEntry(entry.id)}>Delete</Button>
       </Typography>
       {editMode ? <EntryForm trip={trip} entry={entry} editMode={editMode} setEditMode={setEditMode}/> : null}
     </Box>
