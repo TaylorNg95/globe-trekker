@@ -17,19 +17,18 @@ function MyTripsCard({trip}) {
   return (
     <Grid item xs={6} md={4}>
       <Card>
-        <CardActionArea sx={{padding: 2}}>
           <CardMedia
             component="img"
             height="140"
             image={trip.image_path ? trip.image_path : 'public/images/default.jpg'}
             alt={trip.name}
+            sx={{paddingLeft: 2, paddingRight: 2, paddingTop: 2}}
           />
           <CardContent sx={{paddingBottom: 0}}>
             <Typography variant="h4" component="p">{trip.name}</Typography>
             <Typography variant="h6" component="p">Total Miles: {trip.total_miles}</Typography>
             <ProgressBar progress={milesAchieved} total={trip.total_miles}/>
           </CardContent>
-        </CardActionArea>
         <CardActions sx={{paddingLeft: 2, paddingBottom: 2}}>
           <Button component={Link} to={`/my-trips/${trip.id}`} variant="contained">View Entries</Button>
         </CardActions>

@@ -3,7 +3,7 @@ import { UserContext } from '../../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 
 // MATERIAL UI
-import { Grid } from '@mui/material'
+import { Grid, Card, CardMedia, CardContent, CardActions, Typography, Button } from '@mui/material'
 
 function TripMenuCard({trip}) {
   const {addEntry, user} = useContext(UserContext)
@@ -26,10 +26,22 @@ function TripMenuCard({trip}) {
 
   return (
     <Grid item xs={6} md={4}>
-        <h2>TripMenuCard</h2>
-        <p>{trip.name}</p>
-        <p>Total Miles: {trip.total_miles}</p>
-        <button onClick={handleClick}>Add Trip</button>
+        <Card>
+          <CardMedia
+            component="img"
+            height="140"
+            image={trip.image_path ? trip.image_path : 'public/images/default.jpg'}
+            alt={trip.name}
+            sx={{paddingLeft: 2, paddingRight: 2, paddingTop: 2}}
+          />
+          <CardContent sx={{paddingBottom: 0}}>
+            <Typography variant="h4" component="p">{trip.name}</Typography>
+            <Typography variant="h6" component="p">Total Miles: {trip.total_miles}</Typography>
+          </CardContent>
+          <CardActions sx={{paddingLeft: 2, paddingBottom: 2}}>
+            <Button onClick={handleClick} variant="contained">Add Trip</Button>
+          </CardActions>
+        </Card>
     </Grid>
   )
 }
