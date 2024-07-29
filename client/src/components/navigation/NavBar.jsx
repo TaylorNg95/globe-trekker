@@ -80,7 +80,7 @@ function NavBar() {
                 {loggedIn ?
                     <Button component={Link} to='#' color="inherit" onClick={handleLogout}>Logout</Button> :
                     <>
-                        <Button component={Link} to='/login' color="inherit">Login</Button>
+                        <Button component={Link} to='/login' color="inherit">Log In</Button>
                         <Button component={Link} to='/signup' color="inherit">Signup</Button>
                     </>
                 }
