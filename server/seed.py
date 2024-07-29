@@ -15,7 +15,7 @@ with app.app_context():
     db.session.add_all([user1, user2])
     db.session.commit()
 
-    trip1 = Trip(name='Macchu Pichu', location='Peru', total_miles=26, image_path='/images/macchu_picchu.jpg')
+    trip1 = Trip(name='Macchu Picchu', location='Peru', total_miles=26, image_path='/images/macchu_picchu.jpg')
     trip2 = Trip(name='Milford Track', location='New Zealand', total_miles=33, image_path='/images/milford_track.jpg')
     trip3 = Trip(name="Hadrian's Wall Path", location='England', total_miles=84, image_path='/images/hadrian.jpg')
     trip4 = Trip(name="West Highland Way", location='Scotland', total_miles=96, image_path='/images/west_highland.jpg')

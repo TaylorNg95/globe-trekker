@@ -8,12 +8,6 @@ import { Grid, Card, CardMedia, CardContent, Typography, CardActions, Button } f
 
 function MyTripsCard({trip}) {
 
-  const {entries} = useContext(UserContext)
-  const tripEntries = entries.filter(entry => entry.trip_id == trip.id) // gets user entries of one trip
-  const milesAchieved = tripEntries.reduce((accumulator, entry) => {
-    return Math.round(accumulator + entry.miles)
-  }, 0) // calculates total miles entered - to be used in progress bar
-
   return (
     <Grid item xs={6} md={4}>
       <Card>
@@ -28,7 +22,7 @@ function MyTripsCard({trip}) {
             <Typography variant="h4" component="p">{trip.name}</Typography>
             <Typography variant="h6" component="p">Location: {trip.location}</Typography>
             <Typography variant="h6" component="p">Distance: {trip.total_miles} miles</Typography>
-            <ProgressBar progress={milesAchieved} total={trip.total_miles}/>
+            <ProgressBar trip={trip} total={trip.total_miles}/>
           </CardContent>
         <CardActions sx={{paddingLeft: 2, paddingBottom: 2}}>
           <Button component={Link} to={`/my-trips/${trip.id}`} variant="contained">View Entries</Button>

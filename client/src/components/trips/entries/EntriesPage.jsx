@@ -21,9 +21,6 @@ function EntriesPage() {
   const tripEntriesOverZero = tripEntries.filter(entry => entry.miles != 0)
   // We don't want to show trip entries where miles = 0; these can arise in the particular case when a
   // user has created a custom trip but not added any new entries
-  const milesAchieved = tripEntries.reduce((accumulator, entry) => {
-    return Math.round(accumulator + entry.miles) // TBD - not DRY with MyTripsCard
-  }, 0)
 
   if (tripEntries.length == 0) {
     return null
@@ -33,7 +30,7 @@ function EntriesPage() {
         <Typography component="h1" variant='h3' sx={{mt: 3}}>{trip.name}</Typography>
         <Typography component="p" variant='h4' sx={{mt: 2, mb: 2}}>Distance: {trip.total_miles} miles</Typography>
         <Box sx={{width: '90%', mt: 2}}>
-          <ProgressBar progress={milesAchieved} total={trip.total_miles}/>
+          <ProgressBar trip={trip} total={trip.total_miles}/>
         </Box>
         {tripEntriesOverZero.map(entry => <EntryItem key={entry.id} entry={entry} trip={trip}/>)}
         <EntryForm trip={trip} editMode={false}/>
