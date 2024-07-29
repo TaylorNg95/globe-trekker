@@ -19,11 +19,12 @@ with app.app_context():
     db.session.add_all([user1, user2, user3, user4])
     db.session.commit()
 
-    trip1 = Trip(name='Appalachian Trail', country='United States', total_miles=2168, image_path='/images/appalachian_trail.jpg')
-    trip2 = Trip(name='Great Wall of China', country='China', total_miles=13171, image_path='/images/great_wall.jpg')
-    trip3 = Trip(name='Nile River', country='Egypt', total_miles=4130, image_path='/images/nile_river.jpg')
-    trip4 = Trip(name='Macchu Pichu', country='Peru', total_miles=26, image_path='/images/macchu_picchu.jpg')
-    db.session.add_all([trip1, trip2, trip3, trip4])
+    trip1 = Trip(name='Appalachian Trail', location='United States', total_miles=2168, image_path='/images/appalachian_trail.jpg')
+    trip2 = Trip(name='Great Wall of China', location='China', total_miles=13171, image_path='/images/great_wall.jpg')
+    trip3 = Trip(name='Nile River', location='Egypt', total_miles=4130, image_path='/images/nile_river.jpg')
+    trip4 = Trip(name='Macchu Pichu', location='Peru', total_miles=26, image_path='/images/macchu_picchu.jpg')
+    trip5 = Trip(name='Great Barrier Reef', location='Australia', total_miles=1430, image_path='/images/gb_reef.jpg')
+    db.session.add_all([trip1, trip2, trip3, trip5])
     db.session.commit()
 
     entry1 = Entry(date='07-02-24', miles=4.5, user_id=1, trip_id=2)

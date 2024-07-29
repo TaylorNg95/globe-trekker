@@ -12,11 +12,11 @@ class TripsResource(Resource):
     def post(self):
         data = request.get_json()
         name = data.get('name')
-        country = data.get('country')
+        location = data.get('location')
         total_miles = data.get('total_miles')
         custom = data.get('custom')
         try:
-            trip = Trip(name=name, country=country, total_miles=total_miles, custom=custom)
+            trip = Trip(name=name, location=location, total_miles=total_miles, custom=custom)
             db.session.add(trip)
             db.session.commit()
             return trip.to_dict(), 201

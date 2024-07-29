@@ -9,7 +9,7 @@ class Trip(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    country = db.Column(db.String, nullable=False)
+    location = db.Column(db.String, nullable=False)
     total_miles = db.Column(db.Integer, nullable=False)
     image_path = db.Column(db.String)
     custom = db.Column(db.Boolean, default=False)
@@ -20,9 +20,9 @@ class Trip(db.Model, SerializerMixin):
     serialize_rules = ('-entries.trip',)
 
     def __repr__(self):
-        return f'<Trip id={self.id}, name={self.name}, country={self.country}, miles={self.total_miles}>'
+        return f'<Trip id={self.id}, name={self.name}, location={self.location}, miles={self.total_miles}>'
 
-    @validates('name', 'country')
+    @validates('name', 'location')
     def validate_inputs(self, key, input):
         if input == '':
             raise ValueError(f'{key} required')
