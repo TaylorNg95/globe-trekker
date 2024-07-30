@@ -37,7 +37,6 @@ function NavBar() {
         <li><Link to='/signup'>Signup</Link></li>
     </>
 
-    // MATERIAL UI
     const [anchorEl, setAnchorEl] = useState(null);
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -74,7 +73,7 @@ function NavBar() {
                         <MenuItem component={Link} to='/my-trips' onClick={handleClose}>My Trips</MenuItem>
                     </Menu>
                     <Typography variant="h6" color="inherit" component={Link} to='/' sx={{ flexGrow: 1, textDecoration: 'none' }}>
-                        WalkingTheWorld
+                        GlobeTrekker
                     </Typography>
                 </> : null}
                 {loggedIn ?

@@ -8,9 +8,9 @@ with app.app_context():
     Trip.query.delete()
     Entry.query.delete()
 
-    user1 = User(name='Taylor', username='tayloruser')
+    user1 = User(name='User1', username='user1username')
     user1.password_hash = 'abc123'
-    user2 = User(name='Spencer', username='spenceruser')
+    user2 = User(name='User2', username='user2username')
     user2.password_hash = 'xyz789'
     db.session.add_all([user1, user2])
     db.session.commit()
@@ -29,10 +29,10 @@ with app.app_context():
     db.session.add_all([trip1, trip2, trip3, trip4, trip5, trip6, trip7, trip8, trip9, trip10])
     db.session.commit()
 
-    entry1 = Entry(date='07-02-24', miles=4.5, user_id=1, trip_id=1)
-    entry2 = Entry(date='07-03-24', miles=2.6, user_id=1, trip_id=4)
-    entry3 = Entry(date='07-04-24', miles=7.3, user_id=2, trip_id=1)
-    entry4 = Entry(date='07-05-24', miles=5.2, user_id=2, trip_id=5)
+    entry1 = Entry(date='00-00-00', miles=0, user_id=1, trip_id=1)
+    entry2 = Entry(date='07-02-24', miles=4.5, user_id=1, trip_id=1)
+    entry3 = Entry(date='07-03-24', miles=0, user_id=2, trip_id=4)
+    entry4 = Entry(date='07-04-24', miles=7.3, user_id=2, trip_id=1)
 
     db.session.add_all([entry1, entry2, entry3, entry4])
     db.session.commit()

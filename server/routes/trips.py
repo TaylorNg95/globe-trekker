@@ -1,4 +1,4 @@
-from flask import request, session, g
+from flask import request
 from config import api, db
 from flask_restful import Resource
 from models.trip import Trip

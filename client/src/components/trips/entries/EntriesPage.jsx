@@ -16,11 +16,12 @@ function EntriesPage() {
   
   const {entries} = useContext(UserContext)
   const tripEntries = entries.filter(entry => entry.trip_id == trip.id)
-  // Checks of there are any trip entries for the route (since user can theoretically navigate to a
-  // 'my-trips/:id' route without it being theirs); if none, nothing will be rendered
+  /* Check if user trip entries exist for the route (since user could manually navigate to a 'my-trips/:id'
+  route without it being theirs); if none, return null */
+
   const tripEntriesOverZero = tripEntries.filter(entry => entry.miles != 0)
-  // We don't want to show trip entries where miles = 0; these can arise in the particular case when a
-  // user has created a custom trip but not added any new entries
+  /* Exclude trip entries where miles = 0; this occurs when user creates a custom trip but does not add
+  any new entries */
 
   if (tripEntries.length == 0) {
     return null

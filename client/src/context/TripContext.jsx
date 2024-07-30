@@ -37,13 +37,12 @@ function TripProvider({children}) {
                 user_id: user.id,
                 trip_id: newTrip.id
             })
-        // When a new custom trip is created, we must initialize a 0-miles entry (this will never be shown
-        // since we only show entries > 0 but is necessary to ensure the trip shows up on the My-Trips page)
         } else {
             const error = await response.json()
-            console.log(error)
         }
     }
+    /* When a new custom trip is created, we initialize a miles = 0 entry (never shown to user), which is
+    necessary to ensure trip renders on My-Trips page) */
     
     if (loading == true){
         return <h1>Loading...</h1>

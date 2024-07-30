@@ -11,7 +11,7 @@ function Home() {
 
     return (
         <Container id='welcome' sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '80vh'}}>
-            <Typography component='h1' variant='h3'>{user ? `Welcome, ${user.name}!` : 'Walking the World'}</Typography>
+            <Typography component='h1' variant='h3'>{user ? `Welcome, ${user.name}!` : 'GlobeTrekker'}</Typography>
             <img id='boots' src='/images/boots.png'></img>
             {user ?
                 <Button component={Link} to='/my-trips' variant='contained' sx={{mt: 3}}>View My Trips</Button> :

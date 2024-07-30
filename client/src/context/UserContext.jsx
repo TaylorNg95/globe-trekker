@@ -7,7 +7,6 @@ function UserProvider({children}) {
     const [user, setUser] = useState(false)
     const [entries, setEntries] = useState(null)
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState('')
 
     useEffect(() => {
         async function checkUser() {
@@ -47,12 +46,10 @@ function UserProvider({children}) {
             setEntries([...entries, newEntry])
         } else {
             const error = await response.json()
-            console.log(error) // TBD
         }
     }
 
     async function editEntry(entry, id) {
-        console.log('editing entry')
         const response = await fetch(`/api/entries/${id}`, {
             method: 'PATCH',
             headers: {
@@ -69,7 +66,7 @@ function UserProvider({children}) {
                 } else return ent
             }))
         } else {
-            const error = await response.json() // TBD
+            const error = await response.json()
         }
     }
 
@@ -81,14 +78,13 @@ function UserProvider({children}) {
             setEntries(entries.filter(ent => ent.id != id))
         } else {
             const error = await response.json()
-            setError(error) // TBD
         }
       }
     
     if (loading == true){
         return <h1>Loading...</h1>
     } else {
-        return <UserContext.Provider value={{loggedIn, user, login, logout, entries, setEntries, addEntry, editEntry, deleteEntry, error}}>{children}</UserContext.Provider>
+        return <UserContext.Provider value={{loggedIn, user, login, logout, entries, setEntries, addEntry, editEntry, deleteEntry}}>{children}</UserContext.Provider>
     }
 }
 

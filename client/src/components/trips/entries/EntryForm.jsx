@@ -1,7 +1,7 @@
 import {useContext} from 'react'
+import { UserContext } from '../../../context/UserContext'
 import {useFormik} from 'formik'
 import * as yup from 'yup'
-import { UserContext } from '../../../context/UserContext'
 
 // MATERIAL UI
 import { Box, TextField, Button } from '@mui/material'

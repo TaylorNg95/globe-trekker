@@ -1,6 +1,4 @@
-import {useContext} from 'react'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../../context/UserContext'
 import ProgressBar from './ProgressBar'
 
 // MATERIAL UI
@@ -9,7 +7,7 @@ import { Grid, Card, CardMedia, CardContent, Typography, CardActions, Button } f
 function MyTripsCard({trip}) {
 
   return (
-    <Grid item xs={6} md={4}>
+    <Grid item xs={12} sm={6} md={4}>
       <Card>
           <CardMedia
             component="img"
