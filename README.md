@@ -51,7 +51,7 @@ The trip model includes name, location, total_miles, image_path, and boolean cus
 - name and location cannot be empty strings
 - total_miles cannot be negative
 
-Users will never provide an image_path or the boolean custom attribute. Each of the 10 pre-set trips contain a unique image_path and default custom attribute set to 0. If a user creates a custom trip, image_path becomes a default image and custom set to 1.
+Users will never provide an image_path or the boolean custom attribute. Each of the 10 pre-set trips contain a unique image_path and default custom attribute set to 0. If a user creates a custom trip, image_path becomes a default image and custom is set to 1.
 
 Trips can be accessed at '/api/trips' (GET, POST).
 
@@ -64,7 +64,7 @@ The entry model includes date, miles, user_id and trip_id. The model contains th
 
 Users only need to provide date and miles for each entry, as user_id and trip_id are automatically added based on the current logged in user and the trip within which they are adding an entry.
 
-Entry routes provide for full GET, POST, PATCH and DELETE functionality and can be accessed at '/api/entries' and '/api/entries/:id'.
+Entry routes contain full GET, POST, PATCH and DELETE functionality and can be accessed at '/api/entries' and '/api/entries/:id'.
 
 *Note:* By design, any time a user adds a new trip (whether pre-set or custom), a new entry will also be automatically created behind the scenes, with date set to '00-00-00' and miles set to 0. These entries will never be shown to the user, as 0-mile entries are always excluded. However, this action is necessary because the My Trips page is based on all trips where the user has existing entries. Thus, if a user starts a new trip but has not yet input any entries, there must be a placeholder entry to ensure the trip is rendered. 
 
