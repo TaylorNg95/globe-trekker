@@ -10,6 +10,7 @@ function ProgressBar({trip, total}) {
   const milesAchieved = tripEntries.reduce((accumulator, entry) => {
     return Math.round(accumulator + entry.miles)
   }, 0)
+  const milesToGo = Math.max(0, total - milesAchieved)
 
   let percentComplete = Math.round(milesAchieved / total * 100)
   if (percentComplete > 100){
@@ -20,7 +21,7 @@ function ProgressBar({trip, total}) {
   return (
     <>
       <LinearProgress variant="determinate" value={percentComplete} sx={{height: '4vh', borderRadius: '5px'}} />
-      <Typography variant='h6' sx={{fontStyle: 'italic'}}>{percentComplete}% complete</Typography>
+      <Typography variant='h6' sx={{fontStyle: 'italic'}}>{percentComplete}% complete{milesToGo > 0 ? ' -> ' + milesToGo + ' miles left' : null}!</Typography>
     </>
   )
 }
