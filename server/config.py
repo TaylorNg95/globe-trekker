@@ -22,7 +22,7 @@ naming_convention = {
 metaData = MetaData(naming_convention=naming_convention)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db' # TBD: link to .env file
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = os.getenv('FLASK_SECRET_KEY')
 
@@ -30,7 +30,7 @@ db = SQLAlchemy(app=app, metadata=metaData)
 
 api = Api(app)
 
-migrate = Migrate(app=app, db=db, render_as_batch=True) # TBD: added this in
+migrate = Migrate(app=app, db=db, render_as_batch=True)
 
 bcrypt = Bcrypt(app)
 
