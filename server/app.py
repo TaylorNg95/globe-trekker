@@ -5,6 +5,11 @@ from models.entry import Entry
 from routes.sessions import *
 from routes.trips import *
 from routes.entries import *
+from flask import render_template
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
