@@ -27,7 +27,7 @@ function NavBar() {
         navigate('/login')
     }
 
-    const routes = loggedIn ? <>
+    /* const routes = loggedIn ? <>
         <p>Welcome, {user.name}!</p>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/my-trips'>My Trips</Link></li>
@@ -35,7 +35,7 @@ function NavBar() {
     </> : <>
         <li><Link to='/login'>Login</Link></li>
         <li><Link to='/signup'>Signup</Link></li>
-    </>
+    </> */
 
     const [anchorEl, setAnchorEl] = useState(null);
     const handleMenu = (event) => {
