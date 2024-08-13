@@ -59,7 +59,6 @@ Trips can be accessed at '/api/trips' (GET, POST).
 
 The entry model includes date, miles, user_id and trip_id. The model contains the following constraints and validations:
 - date, miles, user_id and trip_id cannot be null (i.e. required)
-- date must be of 'mm-dd-yy' format
 - miles cannot be negative
 
 Users only need to provide date and miles for each entry, as user_id and trip_id are automatically added based on the current logged in user and the trip within which they are adding an entry.

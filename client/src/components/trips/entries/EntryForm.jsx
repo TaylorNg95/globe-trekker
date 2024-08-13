@@ -17,7 +17,7 @@ function EntryForm({trip, entry, editMode, setEditMode}) {
   }
 
   const validationSchema = yup.object({
-    date: yup.string().matches(/\d{2}-\d{2}-\d{2}/, 'Invalid date').required(),
+    date: yup.string().matches(/\d{4}-\d{2}-\d{2}/, 'Invalid date').required(),
     miles: yup.number().required()
   })
 
@@ -38,7 +38,7 @@ function EntryForm({trip, entry, editMode, setEditMode}) {
 
   return (
     <Box component='form' onSubmit={formik.handleSubmit}>
-      <TextField sx={{mr: 1, ml: 1, mt: 1}} type="text" label="Date (mm-dd-yy)" name="date" variant="outlined" value={formik.values.date} onChange={formik.handleChange} required/>
+      <TextField sx={{mr: 1, ml: 1, mt: 1}} type='date' name="date" variant="outlined" value={formik.values.date} onChange={formik.handleChange} required/>
       <TextField sx={{mr: 1, ml: 1, mt: 1}} type="number" label="Miles" name="miles" variant="outlined" inputProps={{step: '0.1', min: '0'}} value={formik.values.miles} onChange={formik.handleChange} required/>
       <Button variant='contained' sx={{padding: 0, ml: 1, mt: 1}} type='submit' >{editMode ? 'Edit Entry' : 'Add Entry'}</Button>
     </Box>

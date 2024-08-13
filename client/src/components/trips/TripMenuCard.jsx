@@ -11,7 +11,7 @@ function TripMenuCard({trip}) {
   const navigate = useNavigate()
 
   const newTripEntry = {
-    date: '00-00-00',
+    date: '0000-00-00',
     miles: 0, 
     user_id: user.id,
     trip_id: trip.id

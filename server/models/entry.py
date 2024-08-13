@@ -22,7 +22,7 @@ class Entry(db.Model, SerializerMixin):
 
     @validates('date')
     def validate_date(self, key, date):
-        if not re.fullmatch(r'\d{2}-\d{2}-\d{2}', date):
+        if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', date):
             raise ValueError('Invalid date format')
         else:
             return date

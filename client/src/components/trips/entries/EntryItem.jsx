@@ -13,7 +13,7 @@ function EntryItem({entry, trip}) {
   return (
     <Box>
       <Typography component='p' variant='h6'>
-        {entry.date} || {entry.miles} mile{entry.miles == 1.0 ? '' : 's'}  
+        {entry.date.slice(5) + '-' + entry.date.slice(0,4)} || {entry.miles} mile{entry.miles == 1.0 ? '' : 's'}  
         <Button variant='outlined' sx={{padding: 0, ml: 1, border: 'solid 1px', color: '#000000'}} onClick={() => setEditMode(!editMode)}>Edit</Button>
         <Button variant='outlined' sx={{padding: 0, ml: 1, border: 'solid 1px', color: '#000000'}} onClick={() => deleteEntry(entry.id)}>Delete</Button>
       </Typography>

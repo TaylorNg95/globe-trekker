@@ -32,7 +32,7 @@ function TripProvider({children}) {
             const newTrip = await response.json()
             setTrips([...trips, newTrip])
             addEntry({
-                date: '00-00-00',
+                date: '0000-00-00',
                 miles: 0,
                 user_id: user.id,
                 trip_id: newTrip.id
