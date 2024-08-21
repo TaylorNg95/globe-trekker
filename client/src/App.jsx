@@ -8,6 +8,7 @@ import EntriesPage from './components/trips/entries/EntriesPage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { UserProvider } from './context/UserContext'
 import { TripProvider } from './context/TripContext'
+import Stripe from './components/payment/Stripe'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             <Route path='/my-trips' element={<MyTripsPage />}/>
             <Route path='/my-trips/:id' element={<EntriesPage />}/>
             <Route path='/trip-menu' element={<TripMenuPage />}/>
+            <Route path='/premium' element={<Stripe />}/>
           </Routes>
         </TripProvider>
       </UserProvider>

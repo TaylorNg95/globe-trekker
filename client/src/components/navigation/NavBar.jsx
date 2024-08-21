@@ -77,7 +77,10 @@ function NavBar() {
                     </Typography>
                 </> : null}
                 {loggedIn ?
-                    <Button component={Link} to='#' color="inherit" onClick={handleLogout}>Logout</Button> :
+                    <>
+                        <Button component={Link} to='/premium' variant="contained" sx={{backgroundColor: '#FED5A4'}}>UPGRADE</Button>
+                        <Button component={Link} to='#' color="inherit" onClick={handleLogout}>Logout</Button>
+                    </> :
                     <>
                         <Button component={Link} to='/login' color="inherit">Log In</Button>
                         <Button component={Link} to='/signup' color="inherit">Signup</Button>

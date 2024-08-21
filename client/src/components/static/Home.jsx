@@ -17,7 +17,7 @@ function Home() {
                 <>
                     <Typography component='h1' variant='h4' sx={{mt: '2%', fontStyle: 'italic', fontWeight: 'bold'}}>Track Your Miles ... Travel The World</Typography>
                     <Button component={Link} to='/login' variant='contained' sx={{mt: 3}}>Login</Button>
-                </>} 
+                </>}
         </Container>
     )
 }
