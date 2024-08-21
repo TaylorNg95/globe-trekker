@@ -12,6 +12,7 @@ class User(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable=False)
     username = db.Column(db.String, nullable=False, unique=True)
     _password_hash = db.Column(db.String, nullable=False)
+    premium = db.Column(db.Boolean, default=False)
 
     entries = db.relationship('Entry', back_populates='user', cascade='all, delete-orphan')
     trips = association_proxy('entries', 'trip', creator=lambda trip_obj: Entry(trip=trip_obj))

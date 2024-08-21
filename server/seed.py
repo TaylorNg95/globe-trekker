@@ -10,7 +10,7 @@ with app.app_context():
 
     user1 = User(name='User1', username='user1username')
     user1.password_hash = 'abc123'
-    user2 = User(name='User2', username='user2username')
+    user2 = User(name='User2', username='user2username', premium=1)
     user2.password_hash = 'xyz789'
     db.session.add_all([user1, user2])
     db.session.commit()

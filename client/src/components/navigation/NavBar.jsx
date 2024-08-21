@@ -27,16 +27,6 @@ function NavBar() {
         navigate('/login')
     }
 
-    /* const routes = loggedIn ? <>
-        <p>Welcome, {user.name}!</p>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/my-trips'>My Trips</Link></li>
-        <li><Link to='#' onClick={handleLogout}>Logout</Link></li>
-    </> : <>
-        <li><Link to='/login'>Login</Link></li>
-        <li><Link to='/signup'>Signup</Link></li>
-    </> */
-
     const [anchorEl, setAnchorEl] = useState(null);
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -45,7 +35,7 @@ function NavBar() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
+    
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -78,7 +68,7 @@ function NavBar() {
                 </> : null}
                 {loggedIn ?
                     <>
-                        <Button component={Link} to='/premium' variant="contained" sx={{backgroundColor: '#FED5A4'}}>UPGRADE</Button>
+                        {user.premium ? '' : <Button component={Link} to='/premium' variant="contained" sx={{backgroundColor: '#FED5A4'}}>UPGRADE</Button>}
                         <Button component={Link} to='#' color="inherit" onClick={handleLogout}>Logout</Button>
                     </> :
                     <>
