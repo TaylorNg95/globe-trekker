@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 // MATERIAL UI
 import { Grid, Card, CardMedia, CardContent, CardActions, Typography, Button } from '@mui/material'
+import StarIcon from '@mui/icons-material/Star';
 
 function TripMenuCard({trip}) {
   const {addEntry, user} = useContext(UserContext)
@@ -39,8 +40,9 @@ function TripMenuCard({trip}) {
             <Typography variant="h6" component="p">Location: {trip.location}</Typography>
             <Typography variant="h6" component="p">Distance Goal: {trip.total_miles} miles</Typography>
           </CardContent>
-          <CardActions sx={{paddingLeft: 2, paddingBottom: 2}}>
+          <CardActions sx={{paddingLeft: 2, paddingBottom: 2, justifyContent: 'space-between'}}>
             <Button onClick={handleClick} variant="contained">Add Trip</Button>
+            {trip.premium ? <StarIcon color='warning'/> : null}
           </CardActions>
         </Card>
     </Grid>

@@ -9,9 +9,10 @@ import { Container, Typography, Grid, Box } from '@mui/material'
 
 function TripMenuPage() {
   const {trips} = useContext(TripContext)
-  const {entries} = useContext(UserContext)
+  const {user, entries} = useContext(UserContext)
   const tripIDs = entries.map(entry => entry.trip_id)
-  const availableTrips = trips.filter(trip => trip.custom == 0 && !tripIDs.includes(trip.id))
+  let availableTrips = trips.filter(trip => trip.custom == 0 && !tripIDs.includes(trip.id))
+  availableTrips = user.premium ? availableTrips : availableTrips.filter(trip => !trip.premium)
   
   return (
     <Container sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh'}}>
