@@ -13,6 +13,7 @@ class Trip(db.Model, SerializerMixin):
     total_miles = db.Column(db.Integer, nullable=False)
     image_path = db.Column(db.String)
     custom = db.Column(db.Boolean, default=False)
+    premium = db.Column(db.Boolean, default=False)
 
     entries = db.relationship('Entry', back_populates='trip', cascade='all, delete-orphan')
     users = association_proxy('entries', 'user', creator=lambda user_obj: Entry(user=user_obj))
