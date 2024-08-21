@@ -2,6 +2,7 @@ from config import app
 from models.user import User
 from models.trip import Trip
 from models.entry import Entry
+from routes.users import *
 from routes.sessions import *
 from routes.trips import *
 from routes.entries import *

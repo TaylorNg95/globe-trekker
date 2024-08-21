@@ -44,9 +44,4 @@ bcrypt = Bcrypt(app)
 
 CORS(app)
 
-stripe_keys = {
-    'secret_key': os.getenv('STRIPE_SECRET_KEY'),
-    'publishable_key': os.getenv('STRIPE_PUBLISHABLE_KEY')
-}
-
-stripe.api_key='sk_test_51PnQl0LUBQTMicjzgEeAk4dbJhPjXT8uAnrT1EKVXbqRDX1LnxxC0fKpcEsnjETiEZmQaJNP28B6kfrb5LWk6QCU00hSzwMtPU'
+stripe.api_key=os.getenv('STRIPE_API_KEY')

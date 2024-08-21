@@ -1,4 +1,5 @@
 import {createContext, useState, useEffect} from 'react'
+import { headers } from '../helpers'
 
 const UserContext = createContext({})
 
@@ -32,13 +33,24 @@ function UserProvider({children}) {
         setEntries(null)
     }
 
+    async function editUser(premiumStatus) {
+        const response = await fetch(`/api/users/${user.id}`, {
+            method: 'PATCH',
+            headers: headers,
+            body: JSON.stringify(premiumStatus)
+        })
+        if (response.status == 200){
+            const editedUser = await response.json()
+            setUser(editedUser)
+        } else {
+            const error = await response.json()
+        }
+    }
+
     async function addEntry(entry) {
         const response = await fetch('/api/entries', {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+            headers: headers,
             body: JSON.stringify(entry)
         })
         if (response.status == 201){
@@ -52,10 +64,7 @@ function UserProvider({children}) {
     async function editEntry(entry, id) {
         const response = await fetch(`/api/entries/${id}`, {
             method: 'PATCH',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+            headers: headers,
             body: JSON.stringify(entry)
         })
         if (response.status == 200){
@@ -84,7 +93,7 @@ function UserProvider({children}) {
     if (loading == true){
         return <h1>Loading...</h1>
     } else {
-        return <UserContext.Provider value={{loggedIn, user, login, logout, entries, setEntries, addEntry, editEntry, deleteEntry}}>{children}</UserContext.Provider>
+        return <UserContext.Provider value={{loggedIn, user, login, logout, editUser, entries, setEntries, addEntry, editEntry, deleteEntry}}>{children}</UserContext.Provider>
     }
 }
 

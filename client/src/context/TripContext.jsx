@@ -1,5 +1,6 @@
 import {createContext, useState, useEffect, useContext} from 'react'
 import { UserContext } from './UserContext'
+import { headers } from '../helpers'
 
 const TripContext = createContext({})
 
@@ -22,10 +23,7 @@ function TripProvider({children}) {
     async function addTrip(trip) {
         const response = await fetch('/api/trips', {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+            headers: headers,
             body: JSON.stringify(trip)
         })
         if (response.status == 201){
