@@ -22,8 +22,9 @@ function MyTripsCard({trip}) {
             <Typography variant="h6" component="p">Distance Goal: {trip.total_miles} miles</Typography>
             <ProgressBar trip={trip} total={trip.total_miles}/>
           </CardContent>
-        <CardActions sx={{paddingLeft: 2, paddingBottom: 2}}>
+        <CardActions sx={{paddingLeft: 2, paddingBottom: 2, justifyContent: 'space-between'}}>
           <Button component={Link} to={`/my-trips/${trip.id}`} variant="contained">View Entries</Button>
+          {trip.premium ? <StarIcon color='warning'/> : null}
         </CardActions>
       </Card>
     </Grid>
