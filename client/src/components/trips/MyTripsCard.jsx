@@ -3,6 +3,7 @@ import ProgressBar from './ProgressBar'
 
 // MATERIAL UI
 import { Grid, Card, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material'
+import StarIcon from '@mui/icons-material/Star';
 
 function MyTripsCard({trip}) {
 
