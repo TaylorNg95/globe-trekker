@@ -1,7 +1,6 @@
 from config import stripe, api
 from flask_restful import Resource
-from flask import redirect, request
-import stripe
+from flask import redirect
 
 class StripeResource(Resource):
     def post(self):
@@ -14,10 +13,10 @@ class StripeResource(Resource):
                     },
                 ],
                 mode='payment',
-                success_url='http://localhost:5173/upgrade?success=true',
-                cancel_url='http://localhost:5173/upgrade?canceled=true',
+                success_url='https://globe-trekker.onrender.com/upgrade?success=true',
+                cancel_url='https://globe-trekker.onrender.com/upgrade?canceled=true',
             )
-            print(checkout_session.url)
+            
         except Exception as e:
             return str(e)
         

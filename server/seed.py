@@ -7,13 +7,6 @@ with app.app_context():
     User.query.delete()
     Trip.query.delete()
     Entry.query.delete()
-
-    user1 = User(name='User1', username='user1username')
-    user1.password_hash = 'abc123'
-    user2 = User(name='User2', username='user2username', premium=1)
-    user2.password_hash = 'xyz789'
-    db.session.add_all([user1, user2])
-    db.session.commit()
     
     # Free Trips
     trip1 = Trip(name='Bright Angel Trail', location='Arizona', total_miles=8, image_path='/images/bright_angel_trail.jpg')
@@ -38,16 +31,7 @@ with app.app_context():
     trip18 = Trip(name='Tour du Mont Blanc', location='Europe', total_miles=105, image_path='/images/mont_blanc.jpg', premium=1)
     trip19 = Trip(name='Rota Vicentina', location='Portugal', total_miles=137, image_path='/images/rota.jpg', premium=1)
     trip20 = Trip(name='Great Barrier Reef', location='Australia', total_miles=1430, image_path='/images/gb_reef.jpg', premium=1)
-    
 
     db.session.add_all([trip1, trip2, trip3, trip4, trip5, trip6, trip7, trip8, trip9, trip10])
     db.session.add_all([trip11, trip12, trip13, trip14, trip15, trip16, trip17, trip18, trip19, trip20])
-    db.session.commit()
-
-    entry1 = Entry(date='0000-00-00', miles=0, user_id=1, trip_id=1)
-    entry2 = Entry(date='2024-07-02', miles=4.5, user_id=1, trip_id=1)
-    entry3 = Entry(date='0000-00-00', miles=0, user_id=2, trip_id=4)
-    entry4 = Entry(date='2024-07-04', miles=7.3, user_id=2, trip_id=4)
-
-    db.session.add_all([entry1, entry2, entry3, entry4])
     db.session.commit()

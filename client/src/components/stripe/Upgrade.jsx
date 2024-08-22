@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 
 // MATERIAL UI
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 
 function ProductDisplay(){
 
@@ -20,9 +20,7 @@ function ProductDisplay(){
           </Grid>
           <Grid item container xs={12} justifyContent='center' alignItems='center' sx={{mt: '1%'}}>    
             <form action="/api/create-checkout-session" method="POST">
-              <button type="submit">
-                Upgrade
-              </button>
+              <Button type='submit' variant='contained'>Upgrade</Button>
             </form>
           </Grid>
       </Grid>
@@ -42,7 +40,7 @@ export default function Upgrade() {
   const {editUser} = useContext(UserContext)
 
   useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
+    // Check if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search)
 
     if (query.get("success")) {
